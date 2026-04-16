@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F2B4A"/>
+      <stop offset="100%" stop-color="#153761"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#D4A017"/>
+      <stop offset="100%" stop-color="#e0b63e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04">
+    <line x1="0" y1="0" x2="1200" y2="630" stroke="white" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="630" stroke="white" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="white" stroke-width="0.5"/>
+    <line x1="0" y1="210" x2="1200" y2="210" stroke="white" stroke-width="0.5"/>
+    <line x1="0" y1="420" x2="1200" y2="420" stroke="white" stroke-width="0.5"/>
+  </g>
+
+  <!-- Gold accent bar at top -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#gold)"/>
+
+  <!-- Logo mark (Y in rounded square) -->
+  <rect x="80" y="240" width="72" height="72" rx="16" fill="url(#gold)"/>
+  <text x="116" y="290" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="800" font-size="38" fill="#0F2B4A">Y</text>
+
+  <!-- Company name -->
+  <text x="172" y="268" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="800" font-size="28" fill="white" letter-spacing="0.5">YES</text>
+  <text x="172" y="298" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="400" font-size="16" fill="rgba(255,255,255,0.6)" letter-spacing="1">EMPLOYMENT SOLUTIONS</text>
+
+  <!-- Tagline -->
+  <text x="80" y="400" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="32" fill="rgba(255,255,255,0.85)">Connecting Talent. Building Futures.</text>
+
+  <!-- Domain -->
+  <text x="80" y="560" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="600" font-size="18" fill="url(#gold)">yes.et</text>
+
+  <!-- Gold accent bar at bottom -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#gold)"/>
+</svg>

@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(cp -r \"C:/Users/user/projects/YES-3.0/public/images\" \"C:/Users/user/projects/YES-5.0/public/\")",
+      "Bash(cp -r \"C:/Users/user/projects/YES-3.0/public/og\" \"C:/Users/user/projects/YES-5.0/public/\")",
+      "Bash(cp \"C:/Users/user/projects/YES-3.0/public/favicon.svg\" \"C:/Users/user/projects/YES-5.0/public/\")",
+      "Bash(cp \"C:/Users/user/projects/YES-3.0/public/favicon.ico\" \"C:/Users/user/projects/YES-5.0/public/\")",
+      "Bash(cp \"C:/Users/user/projects/YES-3.0/public/favicon-32x32.png\" \"C:/Users/user/projects/YES-5.0/public/\")",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(find /c/Users/user/projects/YES-4.0/src -type f \\\\\\(-name *.tsx -o -name *.ts -o -name *.jsx -o -name *.js -o -name *.css -o -name *.scss \\\\\\))",
+      "Bash(cp:*)",
+      "Bash(while read:*)",
+      "Bash(do sed:*)",
+      "Bash(done)",
+      "Bash(find /c/Users/user/projects/cloned/clinique/components -type f -name *.tsx -o -name *.ts)",
+      "Bash(find /c/Users/user/projects/cloned/clinique/app -type f -name *.tsx -o -name *.ts)"
+    ]
+  }
+}
