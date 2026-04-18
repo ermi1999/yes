@@ -15,7 +15,9 @@
       "Bash(do sed:*)",
       "Bash(done)",
       "Bash(find /c/Users/user/projects/cloned/clinique/components -type f -name *.tsx -o -name *.ts)",
-      "Bash(find /c/Users/user/projects/cloned/clinique/app -type f -name *.tsx -o -name *.ts)"
+      "Bash(find /c/Users/user/projects/cloned/clinique/app -type f -name *.tsx -o -name *.ts)",
+      "Bash(npm uninstall:*)",
+      "Bash(cd:*)"
     ]
   }
 }

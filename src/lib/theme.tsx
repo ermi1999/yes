@@ -111,7 +111,7 @@ function applyTheme(id: ThemeId) {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [themeId, setThemeId] = useState<ThemeId>(() => {
     const saved = localStorage.getItem("yes-theme") as ThemeId | null
-    return saved && themes[saved] ? saved : "wise-green"
+    return saved && themes[saved] ? saved : "navy-teal"
   })
 
   useEffect(() => {

@@ -5,12 +5,36 @@ import { AnimatedNavLink } from "@/components/ui/AnimatedLink"
 import { useTheme, type ThemeId } from "@/lib/theme"
 
 const solutions = [
-  { label: "Employer of Record", href: "/solutions/eor", desc: "Your legal shield in Ethiopia" },
-  { label: "Talent Acquisition", href: "/solutions/talent-acquisition", desc: "Ethiopia's top professionals, matched" },
-  { label: "Integrity & Vetting", href: "/solutions/integrity", desc: "Forensic proof of veracity" },
-  { label: "Payroll & Tax", href: "/solutions/payroll", desc: "Zero-error, zero-penalty" },
-  { label: "Training Academy", href: "/solutions/training-academy", desc: "CISI certification & upskilling" },
-  { label: "Enterprise Solutions", href: "/solutions/enterprise", desc: "The Syntropy platform suite" },
+  {
+    label: "Employer of Record",
+    href: "/solutions/eor",
+    desc: "Your legal shield in Ethiopia",
+  },
+  {
+    label: "Talent Acquisition",
+    href: "/solutions/talent-acquisition",
+    desc: "Ethiopia's top professionals, matched",
+  },
+  {
+    label: "Integrity & Vetting",
+    href: "/solutions/integrity",
+    desc: "Forensic proof of veracity",
+  },
+  {
+    label: "Payroll & Tax",
+    href: "/solutions/payroll",
+    desc: "Zero-error, zero-penalty",
+  },
+  {
+    label: "Training Academy",
+    href: "/solutions/training-academy",
+    desc: "CISI certification & upskilling",
+  },
+  {
+    label: "Enterprise Solutions",
+    href: "/solutions/enterprise",
+    desc: "The Syntropy platform suite",
+  },
 ]
 
 const navLinks = [
@@ -33,7 +57,8 @@ export function Navbar() {
   const animatingRef = useRef(false)
   const location = useLocation()
 
-  const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + "/")
+  const isActive = (href: string) =>
+    location.pathname === href || location.pathname.startsWith(href + "/")
   const isSolutionsActive = location.pathname.startsWith("/solutions")
 
   useEffect(() => {
@@ -49,7 +74,9 @@ export function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : ""
-    return () => { document.body.style.overflow = "" }
+    return () => {
+      document.body.style.overflow = ""
+    }
   }, [mobileOpen])
 
   const handleKeyDown = useCallback(
@@ -78,9 +105,15 @@ export function Navbar() {
     const trapFocus = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return
       if (e.shiftKey) {
-        if (document.activeElement === firstEl) { e.preventDefault(); lastEl?.focus() }
+        if (document.activeElement === firstEl) {
+          e.preventDefault()
+          lastEl?.focus()
+        }
       } else {
-        if (document.activeElement === lastEl) { e.preventDefault(); firstEl?.focus() }
+        if (document.activeElement === lastEl) {
+          e.preventDefault()
+          firstEl?.focus()
+        }
       }
     }
     drawer.addEventListener("keydown", trapFocus)
@@ -113,7 +146,9 @@ export function Navbar() {
 
       const tl = gsap.timeline({
         defaults: { ease: "expo.out" },
-        onComplete: () => { animatingRef.current = false },
+        onComplete: () => {
+          animatingRef.current = false
+        },
       })
 
       // 1. Pill expands — panel height grows
@@ -121,30 +156,39 @@ export function Navbar() {
         height: fullHeight,
         duration: 0.3,
         ease: "power4.out",
-        onComplete: () => { gsap.set(panel, { height: "auto", overflow: "visible" }) },
+        onComplete: () => {
+          gsap.set(panel, { height: "auto", overflow: "visible" })
+        },
       })
 
       // 2. Separator line draws across (overlaps with expand)
-      tl.to(separator, {
-        scaleX: 1,
-        duration: 0.25,
-        ease: "power3.out",
-      }, 0.05)
+      tl.to(
+        separator,
+        {
+          scaleX: 1,
+          duration: 0.25,
+          ease: "power3.out",
+        },
+        0.05
+      )
 
       // 3. Cards stagger in — left to right, top to bottom
-      tl.to(cards, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.2,
-        stagger: {
-          amount: 0.12,
-          grid: [2, 3],
-          from: "start",
+      tl.to(
+        cards,
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.2,
+          stagger: {
+            amount: 0.12,
+            grid: [2, 3],
+            from: "start",
+          },
+          ease: "power3.out",
         },
-        ease: "power3.out",
-      }, 0.1)
-
+        0.1
+      )
     } else {
       const tl = gsap.timeline({
         defaults: { ease: "power3.in" },
@@ -167,19 +211,27 @@ export function Navbar() {
       })
 
       // 2. Separator retracts
-      tl.to(separator, {
-        scaleX: 0,
-        duration: 0.15,
-        transformOrigin: "right center",
-      }, 0.04)
+      tl.to(
+        separator,
+        {
+          scaleX: 0,
+          duration: 0.15,
+          transformOrigin: "right center",
+        },
+        0.04
+      )
 
       // 3. Panel collapses
-      tl.to(panel, {
-        height: 0,
-        overflow: "hidden",
-        duration: 0.2,
-        ease: "power4.inOut",
-      }, 0.08)
+      tl.to(
+        panel,
+        {
+          height: 0,
+          overflow: "hidden",
+          duration: 0.2,
+          ease: "power4.inOut",
+        },
+        0.08
+      )
     }
 
     return () => {
@@ -197,11 +249,11 @@ export function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] flex justify-center px-4 md:px-6 pt-3 md:pt-4">
+    <header className="fixed top-0 right-0 left-0 z-[100] flex justify-center px-4 pt-3 md:px-6 md:pt-4">
       {/* The pill navbar — expands to reveal solutions */}
       <div
         ref={pillRef}
-        className="w-full max-w-[1120px] rounded-[var(--radius-large)] overflow-hidden transition-[background,box-shadow]"
+        className="w-full max-w-[1120px] overflow-hidden rounded-[var(--radius-large)] transition-[background,box-shadow]"
         style={{
           background: solutionsOpen
             ? "rgba(255, 255, 255, 0.82)"
@@ -210,23 +262,37 @@ export function Navbar() {
               : "rgba(255, 255, 255, 0.45)",
           backdropFilter: "blur(24px) saturate(1.8)",
           WebkitBackdropFilter: "blur(24px) saturate(1.8)",
-          boxShadow: "rgba(14, 15, 12, 0.04) 0px 0px 0px 1px, rgba(14, 15, 12, 0.03) 0px 2px 8px",
+          boxShadow:
+            "rgba(14, 15, 12, 0.04) 0px 0px 0px 1px, rgba(14, 15, 12, 0.03) 0px 2px 8px",
           transitionDuration: "500ms",
           transitionTimingFunction: "cubic-bezier(0.19, 1, 0.22, 1)",
         }}
         onMouseLeave={handleNavLeave}
       >
         {/* Top bar */}
-        <nav className="flex items-center justify-between h-[56px] px-2 md:px-3" aria-label="Main navigation">
-          <Link to="/" className="flex items-center z-50 relative" aria-label="YES Employment Solutions — Home">
-            <img src="/logo.svg" alt="YES Employment Solutions" className="h-10 w-auto object-contain" />
+        <nav
+          className="flex h-[56px] items-center justify-between px-2 md:px-3"
+          aria-label="Main navigation"
+        >
+          <Link
+            to="/"
+            className="relative z-50 flex items-center"
+            aria-label="YES | Your Employment Solutions — Home"
+          >
+            <img
+              src="/logo.svg"
+              alt="YES | Your Employment Solutions"
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden items-center gap-1 lg:flex">
             <button
               className={`relative flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-medium transition-colors duration-200 ${
-                isSolutionsActive || solutionsOpen ? "text-near-black" : "text-near-black/55 hover:text-near-black"
+                isSolutionsActive || solutionsOpen
+                  ? "text-near-black"
+                  : "text-near-black/55 hover:text-near-black"
               }`}
               style={{ fontFeatureSettings: '"calt"' }}
               aria-expanded={solutionsOpen}
@@ -235,35 +301,61 @@ export function Navbar() {
             >
               Solutions
               <svg
-                width="10" height="10" viewBox="0 0 10 10"
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
                 className="opacity-40 transition-transform duration-300"
-                style={{ transform: solutionsOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                style={{
+                  transform: solutionsOpen ? "rotate(180deg)" : "rotate(0deg)",
+                }}
                 aria-hidden="true"
               >
-                <path d="M2 4L5 7L8 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                <path
+                  d="M2 4L5 7L8 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
 
             {navLinks.map((link) => (
-              <AnimatedNavLink key={link.href} to={link.href} active={isActive(link.href)}>
+              <AnimatedNavLink
+                key={link.href}
+                to={link.href}
+                active={isActive(link.href)}
+              >
                 {link.label}
               </AnimatedNavLink>
             ))}
           </div>
 
           {/* CTA + Theme Switcher */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden items-center gap-2 lg:flex">
             {/* Theme switcher */}
-            <div className="flex items-center gap-1 px-1.5 py-1.5 rounded-full" style={{ background: "rgba(14, 15, 12, 0.04)" }}>
+            <div
+              className="flex items-center gap-1 rounded-full px-1.5 py-1.5"
+              style={{ background: "rgba(14, 15, 12, 0.04)" }}
+            >
               {(Object.keys(themeConfig.themes) as ThemeId[]).map((id) => (
                 <button
                   key={id}
                   onClick={() => themeConfig.setTheme(id)}
-                  className="w-5 h-5 rounded-full transition-all duration-200 relative"
+                  className="relative h-5 w-5 rounded-full transition-all duration-200"
                   style={{
-                    background: id === "wise-green" ? "#9fe870" : id === "navy-gold" ? "#D4A017" : "#4DC5C1",
-                    boxShadow: themeConfig.themeId === id ? "0 0 0 2px #fff, 0 0 0 3.5px rgba(14,15,12,0.3)" : "none",
-                    transform: themeConfig.themeId === id ? "scale(1.1)" : "scale(0.85)",
+                    background:
+                      id === "wise-green"
+                        ? "#9fe870"
+                        : id === "navy-gold"
+                          ? "#D4A017"
+                          : "#4DC5C1",
+                    boxShadow:
+                      themeConfig.themeId === id
+                        ? "0 0 0 2px #fff, 0 0 0 3.5px rgba(14,15,12,0.3)"
+                        : "none",
+                    transform:
+                      themeConfig.themeId === id ? "scale(1.1)" : "scale(0.85)",
                     opacity: themeConfig.themeId === id ? 1 : 0.5,
                   }}
                   aria-label={`Switch to ${themeConfig.labels[id]} theme`}
@@ -274,7 +366,7 @@ export function Navbar() {
 
             <Link
               to="/initialize"
-              className="wise-btn px-4 py-2 bg-wise-green text-dark-green text-[13px] font-semibold rounded-[var(--radius-pill)]"
+              className="wise-btn rounded-[var(--radius-pill)] bg-wise-green px-4 py-2 text-[13px] font-semibold text-dark-green"
               style={{ fontFeatureSettings: '"calt"' }}
             >
               Talk to Us
@@ -283,18 +375,38 @@ export function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="lg:hidden z-[102] relative w-12 h-12 flex items-center justify-center"
+            className="relative z-[102] flex h-12 w-12 items-center justify-center lg:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
-            <div className="flex flex-col gap-[5px] w-5">
-              <span className="block h-0.5 bg-near-black rounded-sm transition-all origin-center"
-                style={{ transitionDuration: "var(--duration-fast)", transform: mobileOpen ? "translateY(7px) rotate(45deg)" : "none" }} />
-              <span className="block h-0.5 bg-near-black rounded-sm transition-all"
-                style={{ transitionDuration: "var(--duration-fast)", opacity: mobileOpen ? 0 : 1, transform: mobileOpen ? "scaleX(0)" : "none" }} />
-              <span className="block h-0.5 bg-near-black rounded-sm transition-all origin-center"
-                style={{ transitionDuration: "var(--duration-fast)", transform: mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none" }} />
+            <div className="flex w-5 flex-col gap-[5px]">
+              <span
+                className="block h-0.5 origin-center rounded-sm bg-near-black transition-all"
+                style={{
+                  transitionDuration: "var(--duration-fast)",
+                  transform: mobileOpen
+                    ? "translateY(7px) rotate(45deg)"
+                    : "none",
+                }}
+              />
+              <span
+                className="block h-0.5 rounded-sm bg-near-black transition-all"
+                style={{
+                  transitionDuration: "var(--duration-fast)",
+                  opacity: mobileOpen ? 0 : 1,
+                  transform: mobileOpen ? "scaleX(0)" : "none",
+                }}
+              />
+              <span
+                className="block h-0.5 origin-center rounded-sm bg-near-black transition-all"
+                style={{
+                  transitionDuration: "var(--duration-fast)",
+                  transform: mobileOpen
+                    ? "translateY(-7px) rotate(-45deg)"
+                    : "none",
+                }}
+              />
             </div>
           </button>
         </nav>
@@ -305,13 +417,14 @@ export function Navbar() {
           className="hidden lg:hidden"
           onMouseEnter={handleNavEnter}
         >
-          <div className="px-5 md:px-6 pb-5 pt-1">
+          <div className="px-5 pt-1 pb-5 md:px-6">
             {/* Animated separator */}
             <div
               ref={separatorRef}
-              className="h-px mb-4"
+              className="mb-4 h-px"
               style={{
-                background: "linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-wise-green) 30%, transparent) 20%, color-mix(in srgb, var(--color-wise-green) 15%, transparent) 80%, transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-wise-green) 30%, transparent) 20%, color-mix(in srgb, var(--color-wise-green) 15%, transparent) 80%, transparent)",
                 transform: "scaleX(0)",
               }}
             />
@@ -321,27 +434,39 @@ export function Navbar() {
               {solutions.map((item, i) => (
                 <Link
                   key={item.href}
-                  ref={(el) => { cardsRef.current[i] = el }}
+                  ref={(el) => {
+                    cardsRef.current[i] = el
+                  }}
                   to={item.href}
-                  className={`group relative flex flex-col gap-1 px-4 py-3.5 rounded-[var(--radius-card)] transition-all duration-150 hover:bg-green-nav-hover ${
+                  className={`group relative flex flex-col gap-1 rounded-[var(--radius-card)] px-4 py-3.5 transition-all duration-150 hover:bg-green-nav-hover ${
                     isActive(item.href) ? "bg-green-nav-hover" : ""
                   }`}
                   style={{ opacity: 0 }}
                 >
                   <span
-                    className="font-semibold text-[13px] text-near-black leading-tight transition-colors duration-150"
+                    className="text-[13px] leading-tight font-semibold text-near-black transition-colors duration-150"
                     style={{ fontFeatureSettings: '"calt"' }}
                   >
                     {item.label}
                     <svg
-                      className="inline-block ml-1.5 opacity-0 -translate-x-1 group-hover:opacity-40 group-hover:translate-x-0 transition-all duration-200"
-                      width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+                      className="ml-1.5 inline-block -translate-x-1 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-40"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      aria-hidden="true"
                     >
-                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path
+                        d="M3 8H13M13 8L9 4M13 8L9 12"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                   </span>
                   <span
-                    className="text-[11px] text-gray leading-snug"
+                    className="text-[11px] leading-snug text-gray"
                     style={{ fontFeatureSettings: '"calt"' }}
                   >
                     {item.desc}
@@ -355,8 +480,10 @@ export function Navbar() {
 
       {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 bg-near-black/30 backdrop-blur-sm z-[100] lg:hidden transition-opacity duration-[var(--duration-normal)] ${
-          mobileOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        className={`fixed inset-0 z-[100] bg-near-black/30 backdrop-blur-sm transition-opacity duration-[var(--duration-normal)] lg:hidden ${
+          mobileOpen
+            ? "visible opacity-100"
+            : "pointer-events-none invisible opacity-0"
         }`}
         onClick={() => setMobileOpen(false)}
         aria-hidden="true"
@@ -365,30 +492,58 @@ export function Navbar() {
       {/* Mobile Drawer */}
       <div
         ref={drawerRef}
-        className={`fixed top-0 right-0 bottom-0 w-full max-w-[360px] bg-white z-[101] lg:hidden transition-transform overflow-y-auto ${
+        className={`fixed top-0 right-0 bottom-0 z-[101] w-full max-w-[360px] overflow-y-auto bg-white transition-transform lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ transitionDuration: "var(--duration-normal)", transitionTimingFunction: "var(--ease-out)" }}
+        style={{
+          transitionDuration: "var(--duration-normal)",
+          transitionTimingFunction: "var(--ease-out)",
+        }}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
       >
-        <div className="pt-24 px-6 pb-8">
-          <div className="text-[11px] font-bold uppercase tracking-[0.12em] text-wise-green mb-3" style={{ fontFeatureSettings: '"calt"' }}>Solutions</div>
+        <div className="px-6 pt-24 pb-8">
+          <div
+            className="mb-3 text-[11px] font-bold tracking-[0.12em] text-wise-green uppercase"
+            style={{ fontFeatureSettings: '"calt"' }}
+          >
+            Solutions
+          </div>
           {solutions.map((item) => (
-            <Link key={item.href} to={item.href} className="flex flex-col gap-0.5 py-2.5 px-3 rounded-[var(--radius-standard)] transition-colors hover:bg-green-nav-hover" onClick={() => setMobileOpen(false)}>
-              <span className="text-[14px] font-semibold text-near-black" style={{ fontFeatureSettings: '"calt"' }}>{item.label}</span>
+            <Link
+              key={item.href}
+              to={item.href}
+              className="flex flex-col gap-0.5 rounded-[var(--radius-standard)] px-3 py-2.5 transition-colors hover:bg-green-nav-hover"
+              onClick={() => setMobileOpen(false)}
+            >
+              <span
+                className="text-[14px] font-semibold text-near-black"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                {item.label}
+              </span>
               <span className="text-[11px] text-gray">{item.desc}</span>
             </Link>
           ))}
-          <div className="h-px bg-near-black/6 my-4" />
+          <div className="my-4 h-px bg-near-black/6" />
           {navLinks.map((link) => (
-            <Link key={link.href} to={link.href} className="block py-2.5 px-3 text-[15px] font-medium text-near-black/70 rounded-[var(--radius-standard)] transition-colors hover:bg-green-nav-hover" style={{ fontFeatureSettings: '"calt"' }} onClick={() => setMobileOpen(false)}>
+            <Link
+              key={link.href}
+              to={link.href}
+              className="block rounded-[var(--radius-standard)] px-3 py-2.5 text-[15px] font-medium text-near-black/70 transition-colors hover:bg-green-nav-hover"
+              style={{ fontFeatureSettings: '"calt"' }}
+              onClick={() => setMobileOpen(false)}
+            >
               {link.label}
             </Link>
           ))}
           <div className="mt-6">
-            <Link to="/initialize" className="wise-btn block w-full text-center px-6 py-3.5 bg-wise-green text-dark-green text-[14px] font-semibold rounded-[var(--radius-pill)]" onClick={() => setMobileOpen(false)}>
+            <Link
+              to="/initialize"
+              className="wise-btn block w-full rounded-[var(--radius-pill)] bg-wise-green px-6 py-3.5 text-center text-[14px] font-semibold text-dark-green"
+              onClick={() => setMobileOpen(false)}
+            >
               Talk to Us
             </Link>
           </div>

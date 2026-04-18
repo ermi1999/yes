@@ -90,7 +90,7 @@ export function WorldMap() {
     }
 
     interface Projectile {
-      destX: number; destY: number
+      originX: number; originY: number
       progress: number; speed: number; landed: boolean
     }
     interface Ripple {
@@ -116,11 +116,11 @@ export function WorldMap() {
 
     function spawnProjectile() {
       if (destIdx >= shuffled.length) shuffleArray()
-      const dest = destXYs[shuffled[destIdx]]
+      const origin = destXYs[shuffled[destIdx]]
       destIdx++
-      const dc = toCanvas(dest)
+      const oc = toCanvas(origin)
       projectiles.push({
-        destX: dc.x, destY: dc.y,
+        originX: oc.x, originY: oc.y,
         progress: 0,
         speed: 0.01 + Math.random() * 0.004,
         landed: false,
@@ -141,7 +141,7 @@ export function WorldMap() {
           hex,
         }
       }
-      return { r: 159, g: 232, b: 112, hex: accent.hex }
+      return { r: 159, g: 232, b: 112, hex: "#9fe870" }
     }
     let accent = getAccentRgb()
     const accentRgba = (a: number) => `rgba(${accent.r}, ${accent.g}, ${accent.b}, ${a})`
@@ -183,36 +183,38 @@ export function WorldMap() {
         ctx!.stroke()
       }
 
-      // Projectiles
+      // Projectiles — fly FROM cities TO hub (Ethiopia)
       for (let i = projectiles.length - 1; i >= 0; i--) {
         const proj = projectiles[i]
         proj.progress += proj.speed
 
         if (proj.progress >= 1 && !proj.landed) {
           proj.landed = true
-          ripples.push({ cx: proj.destX, cy: proj.destY, radius: 0, maxRadius: 70 + Math.random() * 30, speed: 0.8 })
-          ripples.push({ cx: proj.destX, cy: proj.destY, radius: 0, maxRadius: 45 + Math.random() * 20, speed: 0.5 })
+          // Ripple at hub (arrival point)
+          ripples.push({ cx: hubC.x, cy: hubC.y, radius: 0, maxRadius: 70 + Math.random() * 30, speed: 0.8 })
+          ripples.push({ cx: hubC.x, cy: hubC.y, radius: 0, maxRadius: 45 + Math.random() * 20, speed: 0.5 })
         }
         if (proj.progress > 1.1) { projectiles.splice(i, 1); continue }
 
         if (proj.progress <= 1) {
           const t = proj.progress
           const arcHeight = -80 * Math.sin(t * Math.PI)
-          const fx = hubC.x + (proj.destX - hubC.x) * t
-          const fy = hubC.y + (proj.destY - hubC.y) * t + arcHeight
+          // Start from origin city, end at hub
+          const fx = proj.originX + (hubC.x - proj.originX) * t
+          const fy = proj.originY + (hubC.y - proj.originY) * t + arcHeight
 
-          // Trailing line from hub to current position
+          // Trailing line from origin to current position
           const segments = 80
           ctx!.beginPath()
           for (let s = 0; s <= Math.floor(t * segments); s++) {
             const st = s / segments
-            const sx = hubC.x + (proj.destX - hubC.x) * st
-            const sy = hubC.y + (proj.destY - hubC.y) * st + (-80 * Math.sin(st * Math.PI))
+            const sx = proj.originX + (hubC.x - proj.originX) * st
+            const sy = proj.originY + (hubC.y - proj.originY) * st + (-80 * Math.sin(st * Math.PI))
             if (s === 0) ctx!.moveTo(sx, sy)
             else ctx!.lineTo(sx, sy)
           }
           ctx!.lineTo(fx, fy)
-          const lineGrad = ctx!.createLinearGradient(hubC.x, hubC.y, fx, fy)
+          const lineGrad = ctx!.createLinearGradient(proj.originX, proj.originY, fx, fy)
           lineGrad.addColorStop(0, accentRgba(0.06))
           lineGrad.addColorStop(0.3, accentRgba(0.20))
           lineGrad.addColorStop(0.7, accentRgba(0.35))
@@ -224,8 +226,8 @@ export function WorldMap() {
           // Dot trail
           for (let s = 0; s < 12; s++) {
             const tt = Math.max(0, t - s * 0.008)
-            const tx = hubC.x + (proj.destX - hubC.x) * tt
-            const ty = hubC.y + (proj.destY - hubC.y) * tt + (-80 * Math.sin(tt * Math.PI))
+            const tx = proj.originX + (hubC.x - proj.originX) * tt
+            const ty = proj.originY + (hubC.y - proj.originY) * tt + (-80 * Math.sin(tt * Math.PI))
             const trailR = Math.max(0.5, 3.5 - s * 0.25)
             ctx!.beginPath()
             ctx!.arc(tx, ty, trailR, 0, Math.PI * 2)

@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { SectionHeading } from "@/components/ui/SectionHeading"
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion"
+import { VelvetRope } from "@/components/layout/VelvetRope"
+import { submitForm } from "@/utils/form-submit"
+import { useTextReveal } from "@/hooks/useTextReveal"
 
 const suiteNav = [
   { id: "work", label: "Work" },
@@ -14,153 +15,70 @@ const suites = [
   {
     id: "work",
     name: "Syntropy Work",
-    subtitle: "End-to-end workforce management for companies operating in Ethiopia.",
-    modules: [
-      {
-        name: "Recruit",
-        description: "Applicant tracking, candidate pipeline management, and offer automation.",
-      },
-      {
-        name: "Payroll",
-        description: "ERCA-integrated payroll processing with automated tax filing and pension remittance.",
-      },
-      {
-        name: "People",
-        description: "Employee records, leave management, performance tracking, and organizational hierarchy.",
-      },
-      {
-        name: "Comply",
-        description: "Labor law compliance monitoring, contract management, and regulatory alert system.",
-      },
-      {
-        name: "Treasury",
-        description: "Cash flow forecasting, expense management, and multi-currency transaction processing.",
-      },
-    ],
+    hookWord: "Work",
+    status: "live" as const,
+    subtitle:
+      "The operating system for workforce management. Payroll, compliance, recruitment, and treasury — unified under one roof.",
+    modules: ["Recruit", "Payroll", "People", "Comply", "Treasury"],
   },
   {
     id: "property",
     name: "Syntropy Property",
-    subtitle: "Property management platform for commercial and residential portfolios.",
-    modules: [
-      {
-        name: "Units",
-        description: "Property unit registry, floor plans, amenity tracking, and vacancy management.",
-      },
-      {
-        name: "Tenants",
-        description: "Tenant profiles, document management, communication history, and screening integration.",
-      },
-      {
-        name: "Leases",
-        description: "Lease creation, renewal automation, term tracking, and digital signature support.",
-      },
-      {
-        name: "Collect",
-        description: "Rent collection, payment tracking, late fee automation, and financial reporting.",
-      },
-    ],
+    hookWord: "Property",
+    status: "live" as const,
+    subtitle:
+      "Your buildings run themselves. Rent collection, lease administration, reconciliation, and fiscal reporting — across every property in your portfolio.",
+    modules: ["Units", "Tenants", "Leases", "Collect"],
   },
   {
     id: "pharma",
     name: "Syntropy Pharma",
-    subtitle: "Pharmaceutical supply chain and regulatory compliance platform.",
-    modules: [
-      {
-        name: "Import",
-        description: "Import permit management, customs documentation, and shipment tracking.",
-      },
-      {
-        name: "Stock",
-        description: "Inventory management, batch tracking, expiry monitoring, and warehouse optimization.",
-      },
-      {
-        name: "Distribute",
-        description: "Distribution planning, route optimization, cold chain monitoring, and delivery confirmation.",
-      },
-      {
-        name: "Collect",
-        description: "Accounts receivable, payment reconciliation, and credit management for pharmacy networks.",
-      },
-      {
-        name: "Register",
-        description: "Drug registration tracking, EFDA compliance documentation, and renewal management.",
-      },
-    ],
+    hookWord: "Pharma",
+    status: "live" as const,
+    subtitle:
+      "End-to-end pharmaceutical distribution. From import to shelf to collection — with batch-level control at every step.",
+    modules: ["Import", "Stock", "Distribute", "Collect", "Register"],
   },
   {
     id: "fund",
     name: "Syntropy Fund",
-    subtitle: "Fundraising and donor management for NGOs and social enterprises.",
-    modules: [
-      {
-        name: "Pledge",
-        description: "Pledge management, donor commitments, and campaign tracking with conversion analytics.",
-      },
-      {
-        name: "Collect",
-        description: "Multi-channel donation collection, receipt generation, and payment gateway integration.",
-      },
-      {
-        name: "Track",
-        description: "Fund utilization tracking, budget vs. actuals, and project-level financial monitoring.",
-      },
-      {
-        name: "Report",
-        description: "Donor reports, compliance documentation, impact metrics, and audit-ready financial statements.",
-      },
-    ],
+    hookWord: "Fund",
+    status: "live" as const,
+    subtitle:
+      "Large-scale fundraising demands structure. Pledge tracking, payment collection, expense control, and campaign reporting — one system from commitment to close.",
+    modules: ["Pledge", "Collect", "Track", "Report"],
   },
 ]
 
 const securityFeatures = [
   {
-    title: "End-to-End Encryption",
-    description: "All data encrypted in transit (TLS 1.3) and at rest (AES-256). Zero plaintext storage.",
+    title: "Row-level security",
+    description: "Enforced at the database, not the UI.",
   },
   {
-    title: "Role-Based Access",
-    description: "Granular permission system with role inheritance, IP whitelisting, and session management.",
+    title: "Immutable audit trail",
+    description: "User, timestamp, old and new values.",
   },
   {
-    title: "Audit Logging",
-    description: "Complete activity trail for every user action. Immutable logs retained for 7 years.",
+    title: "Role-based access",
+    description: "Granular permissions per module and step.",
   },
   {
-    title: "Multi-Tenant Architecture",
-    description: "Logical data isolation between organizations. No shared schemas, no data leakage risk.",
+    title: "Cloud-native",
+    description: "10 to 10,000 users, no infrastructure changes.",
   },
   {
-    title: "API-First Design",
-    description: "RESTful APIs with OAuth 2.0 authentication. Webhook support for real-time integrations.",
+    title: "99.9% uptime",
+    description: "Enterprise infrastructure, not shared hosting.",
   },
   {
-    title: "SLA-Backed Uptime",
-    description: "99.9% uptime guarantee with financial penalties for non-compliance. Monitored 24/7.",
-  },
-]
-
-const faqs = [
-  {
-    q: "Can I use just one module without the full suite?",
-    a: "Yes. Every module is independently deployable. Start with what you need and add modules as your requirements grow. All modules share a unified data layer, so integration is seamless when you expand.",
-  },
-  {
-    q: "How long does implementation take?",
-    a: "Standard implementation takes 4-8 weeks depending on the number of modules, data migration complexity, and integration requirements. We provide a dedicated implementation team with a fixed timeline.",
-  },
-  {
-    q: "Do you support custom integrations?",
-    a: "Yes. Our API-first architecture supports integration with any system that can make HTTP requests. We also build custom integrations for enterprise clients with specific requirements.",
-  },
-  {
-    q: "Where is data hosted?",
-    a: "Data is hosted in enterprise-grade cloud infrastructure with primary servers in secure data centers. We support data residency requirements and can deploy on-premise for clients with specific compliance needs.",
+    title: "Real-time sync",
+    description: "Every device, every change, instantly.",
   },
 ]
 
 export default function Enterprise() {
-  const [activeTab, setActiveTab] = useState("work")
+  const h1Ref = useTextReveal()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -168,6 +86,9 @@ export default function Enterprise() {
     platform: "",
     description: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState("")
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -175,13 +96,24 @@ export default function Enterprise() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic
+    setIsSubmitting(true)
+    setSubmitError("")
+
+    const result = await submitForm("enterprise", formData)
+
+    setIsSubmitting(false)
+
+    if (result.ok) {
+      setIsSubmitted(true)
+      setFormData({ name: "", email: "", company: "", platform: "", description: "" })
+    } else {
+      setSubmitError(result.message)
+    }
   }
 
   const scrollToSuite = (id: string) => {
-    setActiveTab(id)
     const el = document.getElementById(id)
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -198,11 +130,12 @@ export default function Enterprise() {
               className="text-[11px] font-bold uppercase tracking-[0.12em] text-near-black/30"
               style={{ fontFeatureSettings: '"calt"' }}
             >
-              Enterprise Solutions
+              Your Enterprise Solutions
             </span>
           </div>
           <h1
-            className="text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-black leading-[0.85] max-w-5xl mx-auto"
+            ref={h1Ref}
+            className="invisible text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-black leading-[0.85] max-w-5xl mx-auto"
             style={{ fontFeatureSettings: '"calt"' }}
           >
             The <span className="hook">Syntropy</span> Suite
@@ -211,131 +144,173 @@ export default function Enterprise() {
             className="mt-8 text-base md:text-lg text-gray leading-relaxed max-w-xl mx-auto font-medium"
             style={{ fontFeatureSettings: '"calt"' }}
           >
-            Purpose-built enterprise platforms for workforce management, property
-            operations, pharmaceutical supply chain, and fundraising — designed for
-            organizations operating in Ethiopia.
+            The calm of knowing it's all managed.
           </p>
-          <div className="mt-10">
+
+          {/* Suite Nav Pills */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {suiteNav.map((nav) => (
+              <button
+                key={nav.id}
+                onClick={() => scrollToSuite(nav.id)}
+                className="px-4 py-2 text-[13px] font-semibold rounded-[var(--radius-pill)] transition-colors hover:bg-near-black/[0.08]"
+                style={{
+                  fontFeatureSettings: '"calt"',
+                  background: "rgba(14,15,12,0.04)",
+                  border: "1px solid rgba(14,15,12,0.08)",
+                }}
+              >
+                {nav.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/initialize"
               className="wise-btn inline-flex items-center gap-2 px-8 py-4 bg-wise-green text-dark-green text-lg font-semibold rounded-[var(--radius-pill)]"
               style={{ fontFeatureSettings: '"calt"' }}
             >
-              See It Live
+              Request a Demo
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
+            <a
+              href="#custom-request"
+              className="wise-btn inline-flex items-center gap-2 px-8 py-4 text-near-black text-lg font-semibold rounded-[var(--radius-pill)]"
+              style={{ fontFeatureSettings: '"calt"', background: "var(--color-light-mint)" }}
+            >
+              Custom Build
+            </a>
           </div>
         </div>
       </section>
-
-      {/* Suite Navigation */}
-      <div className="sticky top-[72px] z-40 border-b border-near-black/10 bg-white/80 backdrop-blur-xl">
-        <div className="container-yes">
-          <div className="flex items-center gap-2 py-4 overflow-x-auto">
-            {suiteNav.map((nav) => (
-              <button
-                key={nav.id}
-                onClick={() => scrollToSuite(nav.id)}
-                className={`wise-btn px-5 py-2.5 text-[14px] font-semibold rounded-[var(--radius-pill)] transition-colors whitespace-nowrap ${
-                  activeTab === nav.id
-                    ? "bg-wise-green text-dark-green"
-                    : "text-near-black"
-                }`}
-                style={{
-                  fontFeatureSettings: '"calt"',
-                  ...(activeTab !== nav.id
-                    ? { background: "var(--color-light-mint)" }
-                    : {}),
-                }}
-              >
-                Syntropy {nav.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Suite Sections */}
       {suites.map((suite) => (
         <section
           key={suite.id}
           id={suite.id}
-          className="section-spacing scroll-mt-[140px]"
+          className="section-spacing"
         >
-          <div className="container-yes">
-            <SectionHeading
-              label={`Syntropy ${suite.id.charAt(0).toUpperCase() + suite.id.slice(1)}`}
-              subtitle={suite.subtitle}
+          <div className="container-yes max-w-4xl">
+            {/* Live Status */}
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-2 h-2 rounded-full bg-wise-green" />
+              <span
+                className="text-[10px] font-bold uppercase tracking-[0.1em] text-wise-green"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                Live
+              </span>
+            </div>
+
+            {/* Suite Name */}
+            <h2
+              className="text-[40px] md:text-[56px] lg:text-[64px] font-black leading-[0.85]"
+              style={{ fontFeatureSettings: '"calt"' }}
             >
-              {suite.name}
-            </SectionHeading>
-            <div
-              className={`mt-12 grid gap-6 ${
-                suite.modules.length === 5
-                  ? "sm:grid-cols-2 lg:grid-cols-3"
-                  : "sm:grid-cols-2"
-              }`}
+              Syntropy <span className="hook">{suite.hookWord}</span>
+            </h2>
+
+            {/* Description */}
+            <p
+              className="mt-6 text-base md:text-lg text-gray leading-relaxed max-w-2xl font-medium"
+              style={{ fontFeatureSettings: '"calt"' }}
             >
-              {suite.modules.map((mod, i) => (
-                <div key={i} className="surface-card p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="w-8 h-8 rounded-full bg-wise-green/10 flex items-center justify-center text-dark-green">
-                      <span
-                        className="text-[11px] font-black"
-                        style={{ fontFeatureSettings: '"calt"' }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </span>
-                    <h3
-                      className="text-base font-black leading-[0.85]"
-                      style={{ fontFeatureSettings: '"calt"' }}
-                    >
-                      {mod.name}
-                    </h3>
-                  </div>
-                  <p
-                    className="text-[14px] text-gray font-medium leading-relaxed"
-                    style={{ fontFeatureSettings: '"calt"' }}
-                  >
-                    {mod.description}
-                  </p>
-                </div>
+              {suite.subtitle}
+            </p>
+
+            {/* Module Pills */}
+            <div className="mt-8 flex flex-wrap gap-2">
+              {suite.modules.map((mod) => (
+                <span
+                  key={mod}
+                  className="px-3.5 py-1.5 text-[12px] font-bold text-near-black/60 bg-white border border-near-black/[0.08] rounded-[8px]"
+                  style={{ fontFeatureSettings: '"calt"' }}
+                >
+                  {mod}
+                </span>
               ))}
+            </div>
+
+            {/* CTA */}
+            <div className="mt-10">
+              <Link
+                to="/initialize"
+                className="wise-btn inline-flex items-center gap-2 px-8 py-4 bg-wise-green text-dark-green text-base font-semibold rounded-[var(--radius-pill)]"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                See {suite.name} Live
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
             </div>
           </div>
         </section>
       ))}
 
       {/* Enterprise Defaults */}
-      <section className="section-spacing bg-near-black/[0.02]">
+      <section className="section-spacing bg-near-black">
         <div className="container-yes">
-          <SectionHeading label="Security" align="center">
-            Enterprise Defaults
-          </SectionHeading>
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <span
+              className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/30"
+              style={{ fontFeatureSettings: '"calt"' }}
+            >
+              Every Platform
+            </span>
+            <h2
+              className="mt-4 text-[40px] md:text-[56px] lg:text-[64px] font-black leading-[0.85] text-white"
+              style={{ fontFeatureSettings: '"calt"' }}
+            >
+              Enterprise <span className="hook">Defaults</span>
+            </h2>
+            <p
+              className="mt-5 text-[15px] text-white/50 max-w-lg mx-auto leading-relaxed font-medium"
+              style={{ fontFeatureSettings: '"calt"' }}
+            >
+              Security, compliance, and audit logging ship as defaults — not add-ons.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
             {securityFeatures.map((feature, i) => (
-              <div key={i} className="surface-card p-8">
-                <div className="w-10 h-10 rounded-full bg-near-black/[0.04] flex items-center justify-center mb-4">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-near-black">
-                    <path d="M10 2L3 5.5V9.5C3 14.18 6.01 18.55 10 19.5C13.99 18.55 17 14.18 17 9.5V5.5L10 2Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
-                    <path d="M7 10L9.5 12.5L13.5 8" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+              <div
+                key={i}
+                className="border border-white/[0.06] bg-white/[0.02] rounded-[var(--radius-standard)] p-5 flex items-start gap-3"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  className="mt-0.5 shrink-0"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 9L7.5 12.5L14 5.5"
+                    stroke="var(--color-wise-green)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <div>
+                  <h3
+                    className="text-[14px] font-bold text-white leading-snug"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p
+                    className="text-[13px] text-white/70 font-medium leading-relaxed mt-1"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    {feature.description}
+                  </p>
                 </div>
-                <h3
-                  className="text-base font-black leading-[0.85] mb-2"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  {feature.title}
-                </h3>
-                <p
-                  className="text-[13px] text-gray font-medium leading-relaxed"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  {feature.description}
-                </p>
               </div>
             ))}
           </div>
@@ -343,148 +318,172 @@ export default function Enterprise() {
       </section>
 
       {/* Custom Build Request Form */}
-      <section className="section-spacing">
+      <section id="custom-request" className="section-spacing scroll-mt-[72px]">
         <div className="container-yes max-w-2xl">
-          <SectionHeading label="Custom Build" align="center">
-            Request a Custom Configuration
-          </SectionHeading>
-          <form onSubmit={handleSubmit} className="mt-12 space-y-5">
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label
-                  htmlFor="ent-name"
-                  className="block text-[13px] font-semibold text-near-black mb-2"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="ent-name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                  placeholder="Your full name"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="ent-email"
-                  className="block text-[13px] font-semibold text-near-black mb-2"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="ent-email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                  placeholder="you@company.com"
-                />
-              </div>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label
-                  htmlFor="ent-company"
-                  className="block text-[13px] font-semibold text-near-black mb-2"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  Company
-                </label>
-                <input
-                  type="text"
-                  id="ent-company"
-                  name="company"
-                  required
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                  placeholder="Your organization"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="ent-platform"
-                  className="block text-[13px] font-semibold text-near-black mb-2"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  Platform Interest
-                </label>
-                <select
-                  id="ent-platform"
-                  name="platform"
-                  required
-                  value={formData.platform}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors appearance-none"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  <option value="">Select a platform</option>
-                  <option value="work">Syntropy Work</option>
-                  <option value="property">Syntropy Property</option>
-                  <option value="pharma">Syntropy Pharma</option>
-                  <option value="fund">Syntropy Fund</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label
-                htmlFor="ent-description"
-                className="block text-[13px] font-semibold text-near-black mb-2"
-                style={{ fontFeatureSettings: '"calt"' }}
-              >
-                Describe Your Requirements
-              </label>
-              <textarea
-                id="ent-description"
-                name="description"
-                rows={5}
-                required
-                value={formData.description}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors resize-none"
-                style={{ fontFeatureSettings: '"calt"' }}
-                placeholder="Tell us about your organization, the challenges you are solving, and which modules interest you..."
-              />
-            </div>
-            <button
-              type="submit"
-              className="wise-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-wise-green text-dark-green text-base font-semibold rounded-[var(--radius-pill)]"
+          <div className="text-center mb-12">
+            <span
+              className="text-[11px] font-bold uppercase tracking-[0.12em] text-near-black/30"
               style={{ fontFeatureSettings: '"calt"' }}
             >
-              Submit Request
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          </form>
-        </div>
-      </section>
+              Custom Build
+            </span>
+            <h2
+              className="mt-4 text-[32px] md:text-[40px] font-black leading-[0.9]"
+              style={{ fontFeatureSettings: '"calt"' }}
+            >
+              Need Something <span className="hook">Different</span>?
+            </h2>
+          </div>
 
-      {/* FAQ */}
-      <section className="section-spacing bg-near-black/[0.02]">
-        <div className="container-yes max-w-3xl">
-          <SectionHeading label="FAQ" align="center">
-            Common Questions
-          </SectionHeading>
-          <Accordion type="single" collapsible className="max-w-2xl mx-auto mt-12">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger>{faq.q}</AccordionTrigger>
-                <AccordionContent>{faq.a}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          {isSubmitted ? (
+            <div className="text-center py-16">
+              <div className="w-14 h-14 rounded-full bg-wise-green/10 flex items-center justify-center mx-auto mb-6">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                  <path d="M7 14L12 19L21 9" stroke="var(--color-wise-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <h3
+                className="text-[24px] font-black leading-[0.9]"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                Request Received
+              </h3>
+              <p
+                className="mt-4 text-[15px] text-gray font-medium leading-relaxed max-w-sm mx-auto"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                We'll review your requirements and get back to you within two business days.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {submitError && (
+                <div
+                  className="px-4 py-3 rounded-[var(--radius-standard)] bg-red-50 border border-red-200 text-[13px] text-red-700 font-medium"
+                  style={{ fontFeatureSettings: '"calt"' }}
+                >
+                  {submitError}
+                </div>
+              )}
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label
+                    htmlFor="ent-name"
+                    className="block text-[13px] font-semibold text-near-black mb-2"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="ent-name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="ent-email"
+                    className="block text-[13px] font-semibold text-near-black mb-2"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="ent-email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                    placeholder="you@company.com"
+                  />
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label
+                    htmlFor="ent-company"
+                    className="block text-[13px] font-semibold text-near-black mb-2"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    id="ent-company"
+                    name="company"
+                    required
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                    placeholder="Company name"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="ent-platform"
+                    className="block text-[13px] font-semibold text-near-black mb-2"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    Industry
+                  </label>
+                  <input
+                    type="text"
+                    id="ent-platform"
+                    name="platform"
+                    required
+                    value={formData.platform}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                    placeholder="e.g. Manufacturing, Logistics, Healthcare"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="ent-description"
+                  className="block text-[13px] font-semibold text-near-black mb-2"
+                  style={{ fontFeatureSettings: '"calt"' }}
+                >
+                  What problem are you trying to solve?
+                </label>
+                <textarea
+                  id="ent-description"
+                  name="description"
+                  rows={5}
+                  required
+                  value={formData.description}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-[var(--radius-standard)] border border-near-black/12 bg-white text-[14px] font-medium text-near-black placeholder:text-gray/50 focus:outline-none focus:ring-2 focus:ring-wise-green/40 focus:border-wise-green transition-colors resize-none"
+                  style={{ fontFeatureSettings: '"calt"' }}
+                  placeholder="The operational challenge, workflows involved, and what you're currently using."
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="wise-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-wise-green text-dark-green text-base font-semibold rounded-[var(--radius-pill)] disabled:opacity-60 disabled:cursor-not-allowed"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                {isSubmitting ? "Submitting..." : "Submit Request"}
+                {!isSubmitting && (
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
@@ -505,7 +504,7 @@ export default function Enterprise() {
                 className="mt-5 text-[15px] text-white/70 max-w-md mx-auto leading-relaxed font-medium"
                 style={{ fontFeatureSettings: '"calt"' }}
               >
-                Schedule a live walkthrough of the Syntropy suite tailored to your industry and requirements.
+                Pick a platform. We'll walk you through it.
               </p>
               <div className="mt-8">
                 <Link
@@ -513,7 +512,7 @@ export default function Enterprise() {
                   className="wise-btn inline-flex items-center gap-2 px-8 py-4 bg-wise-green text-dark-green text-lg font-semibold rounded-[var(--radius-pill)]"
                   style={{ fontFeatureSettings: '"calt"' }}
                 >
-                  See It Live
+                  Request a Demo
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -523,6 +522,8 @@ export default function Enterprise() {
           </div>
         </div>
       </section>
+
+      <VelvetRope />
     </>
   )
 }

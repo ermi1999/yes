@@ -1,28 +1,37 @@
 import { Link } from "react-router-dom"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion"
+import { VelvetRope } from "@/components/layout/VelvetRope"
+import { useTextReveal } from "@/hooks/useTextReveal"
 
-const lawRequirements = [
-  "Entity registration with the Ministry of Trade",
-  "70/30 local-to-foreign staffing ratio compliance",
-  "Monthly pension contributions to PSSSA",
-  "Income tax withholding and ERCA filing",
-  "Labor dispute resolution under Proclamation 1156/2019",
-]
-
-const yesProtections = [
-  "Licensed Ethiopian entity — your legal employer of record",
-  "Real-time ratio monitoring with automated alerts",
-  "Automated pension calculation and remittance",
-  "ERCA-integrated payroll with zero-error filing",
-  "In-house labor counsel for dispute prevention and resolution",
+const compliancePairs = [
+  {
+    requirement: "Fully compliant employment contracts per statutory requirements",
+    protection: "YES holds all employment contracts as the legal employer",
+  },
+  {
+    requirement: "Mandatory pension contributions to POESSA at prescribed rates",
+    protection: "We manage pension enrollment and monthly contributions",
+  },
+  {
+    requirement: "Strict termination protocols with mandatory severance calculations",
+    protection: "Lawful termination processing with full severance calculation",
+  },
+  {
+    requirement: "Income tax withholding per the revised tax brackets",
+    protection: "Accurate payroll tax withholding and filing every month",
+  },
+  {
+    requirement: "Annual leave, maternity leave, and overtime provisions per statutory minimums",
+    protection: "Quarterly compliance audits and proactive regulation monitoring",
+  },
 ]
 
 const benefits = [
   {
     title: "Risk Mitigation",
     description:
-      "Full legal liability sits with YES. You operate in Ethiopia without entity exposure, personal director risk, or regulatory surprises.",
+      "YES assumes employer-of-record obligations under Ethiopian law — contracts, tax, pension, and statutory compliance — so your team stays focused on operations.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <path d="M14 2L4 7V13C4 19.63 8.28 25.79 14 27C19.72 25.79 24 19.63 24 13V7L14 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -33,7 +42,7 @@ const benefits = [
   {
     title: "Speed to Market",
     description:
-      "Hire your first employee in Ethiopia within 5 business days. No entity registration, no six-month incorporation timeline.",
+      "First employee onboarded in weeks, not months. No entity registration, no prolonged legal setup.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <circle cx="14" cy="14" r="11" stroke="currentColor" strokeWidth="1.5" />
@@ -44,7 +53,7 @@ const benefits = [
   {
     title: "Cost Clarity",
     description:
-      "One transparent monthly fee per employee. No hidden charges for tax filings, pension remittance, or compliance updates.",
+      "No entity setup costs. No hidden admin overhead. One transparent fee that covers everything.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <rect x="4" y="6" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
@@ -56,7 +65,7 @@ const benefits = [
   {
     title: "Local Expertise",
     description:
-      "A team that has managed employment in Ethiopia since 2015. We know the regulators, the processes, and the precedents.",
+      "A decade navigating Ethiopian regulatory changes, tax audits, and labor disputes. We've seen it all.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <path d="M14 3L17.09 9.26L24 10.27L19 15.14L20.18 22.02L14 18.77L7.82 22.02L9 15.14L4 10.27L10.91 9.26L14 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -67,47 +76,49 @@ const benefits = [
 
 const faqs = [
   {
-    q: "What exactly is an Employer of Record?",
-    a: "An EOR is a licensed local entity that legally employs workers on your behalf. YES becomes the legal employer in Ethiopia, handling contracts, payroll, tax, and compliance — while you manage the day-to-day work and relationship with your team.",
+    q: "What is an EOR?",
+    a: "An Employer of Record (EOR) is a local legal entity that employs workers on your behalf. YES becomes the legal employer under Ethiopian law, handling contracts, payroll, tax, and compliance — while you direct the day-to-day work.",
   },
   {
-    q: "How does Proclamation 1156/2019 affect foreign employers?",
-    a: "Proclamation 1156/2019 governs all employment relationships in Ethiopia. It requires compliant employment contracts, proper termination procedures, pension contributions, and adherence to working hour limits. Non-compliance carries significant penalties including fines and operational suspension.",
+    q: "How does YES handle Proclamation 1156/2019?",
+    a: "We draft all employment contracts to the specifications of Ethiopia's Labour Proclamation 1156/2019, manage mandatory pension and social security contributions, handle all tax filings, and ensure termination procedures follow statutory requirements.",
   },
   {
-    q: "When should I use an EOR vs. setting up a local entity?",
-    a: "An EOR is ideal when you need to hire quickly (under 20 employees), test the market before committing to a full entity, or want to avoid the cost and complexity of Ethiopian company registration. A local entity makes sense once you have 20+ employees and long-term operational plans.",
+    q: "EOR vs local entity?",
+    a: "A local entity requires investment commission approval, capital deposit, company registration, and ongoing corporate governance — typically 3\u20136 months and significant cost. With YES as your EOR, you're operational in weeks.",
   },
   {
-    q: "How quickly can I hire my first employee?",
-    a: "From signed agreement to first employee onboarded: 5 business days. We handle the employment contract, benefits enrollment, payroll setup, and compliance registration in parallel.",
+    q: "How quickly can we hire?",
+    a: "Typically under three weeks from signed agreement. That includes contract drafting, tax registration, pension enrollment, and employee onboarding.",
   },
   {
-    q: "What does EOR service cost?",
-    a: "We charge a flat monthly fee per employee that covers legal employment, payroll processing, tax filing, pension management, and ongoing compliance. No setup fees, no hidden charges. Contact us for a detailed quote based on your team size.",
+    q: "What does it cost?",
+    a: "Pricing depends on headcount, role complexity, and service scope. We provide a transparent, all-inclusive monthly fee per employee. Contact us for a quote.",
   },
 ]
 
 const platformPartners = [
   {
-    title: "Dedicated Account Manager",
-    description: "A single point of contact who knows your team, your industry, and your operational requirements.",
+    title: "Licensed Local Entity",
+    description: "Established Ethiopian legal entity. No shell corps.",
   },
   {
-    title: "Real-Time Compliance Dashboard",
-    description: "Track employment status, contract renewals, tax filings, and pension contributions in one view.",
+    title: "Proc. 1156/2019 Native",
+    description: "Contracts, termination, severance — built-in, not bolted on.",
   },
   {
-    title: "Flexible Contract Structures",
-    description: "Fixed-term, indefinite, or project-based — we structure contracts to match your operational needs.",
+    title: "End-to-End Payroll",
+    description: "ERCA tax filing, pension, net pay — white-glove or API-ready.",
   },
   {
-    title: "Seamless Offboarding",
-    description: "When contracts end, we handle termination compliance, final pay calculation, severance, and documentation.",
+    title: "SLA-Backed Delivery",
+    description: "Defined turnarounds. Error liability on us. Your SLA is our SLA.",
   },
 ]
 
 export default function Eor() {
+  const h1Ref = useTextReveal()
+
   return (
     <>
       {/* Hero */}
@@ -122,7 +133,8 @@ export default function Eor() {
             </span>
           </div>
           <h1
-            className="text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-black leading-[0.85] max-w-5xl mx-auto"
+            ref={h1Ref}
+            className="invisible text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] font-black leading-[0.85] max-w-5xl mx-auto"
             style={{ fontFeatureSettings: '"calt"' }}
           >
             Employ in Ethiopia.{" "}
@@ -132,21 +144,31 @@ export default function Eor() {
             className="mt-8 text-base md:text-lg text-gray leading-relaxed max-w-xl mx-auto font-medium"
             style={{ fontFeatureSettings: '"calt"' }}
           >
-            Legally employ workers in Ethiopia without registering an entity. YES
-            acts as your licensed employer of record — handling contracts, payroll,
-            tax, pension, and full regulatory compliance.
+            Contracts, compliance, tax, pensions — every obligation under Proclamation 1156/2019, handled by a team that's done it thousands of times.
           </p>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/initialize"
               className="wise-btn inline-flex items-center gap-2 px-8 py-4 bg-wise-green text-dark-green text-lg font-semibold rounded-[var(--radius-pill)]"
               style={{ fontFeatureSettings: '"calt"' }}
             >
-              Talk to Our Team
+              Talk to Us
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
+            <Link
+              to="/solutions/talent-acquisition"
+              className="wise-btn inline-flex items-center gap-2 px-8 py-4 text-near-black text-lg font-semibold rounded-[var(--radius-pill)]"
+              style={{ fontFeatureSettings: '"calt"', background: "var(--color-light-mint)" }}
+            >
+              Talent Acquisition
+            </Link>
+          </div>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <span className="text-[12px] text-wise-green font-medium">Accepting new clients</span>
+            <span className="text-near-black/10">|</span>
+            <span className="text-[12px] text-wise-green font-medium">Full Proclamation 1156/2019 Compliance</span>
           </div>
         </div>
       </section>
@@ -155,100 +177,129 @@ export default function Eor() {
       <section className="section-spacing">
         <div className="container-yes">
           <SectionHeading
-            label="Compliance"
-            subtitle="Ethiopian employment law is specific and enforcement is increasing. Here is how the law maps to our protection layer."
+            label="Ethiopian Labor Law"
+            subtitle="Proclamation 1156/2019 restructured the entire employment landscape in Ethiopia. Non-compliance carries severe penalties including entity closure and personal criminal liability for directors."
+            align="center"
           >
             Proclamation 1156/2019 Compliance
           </SectionHeading>
 
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            {/* Law Requirements */}
-            <div className="surface-card p-8 md:p-10">
-              <div className="flex items-center gap-3 mb-6">
-                <span
-                  className="w-8 h-8 rounded-full bg-near-black/5 flex items-center justify-center text-near-black"
-                >
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M9 2V16M2 9H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </span>
-                <h3
-                  className="text-lg font-black leading-[0.85]"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  Law Requirements
-                </h3>
-              </div>
-              <ul className="space-y-4">
-                {lawRequirements.map((item, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 text-[15px] text-warm-dark font-medium leading-relaxed"
-                    style={{ fontFeatureSettings: '"calt"' }}
-                  >
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-danger-red shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+          {/* Column headers */}
+          <div className="max-w-5xl mx-auto mt-12">
+            <div className="hidden md:grid md:grid-cols-[1fr_40px_1fr] gap-0 mb-6 px-8">
+              <span
+                className="text-[11px] font-bold uppercase tracking-[0.08em] text-gray"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                What the Law Requires
+              </span>
+              <span />
+              <span
+                className="text-[11px] font-bold uppercase tracking-[0.08em] text-wise-green"
+                style={{ fontFeatureSettings: '"calt"' }}
+              >
+                How YES Protects You
+              </span>
             </div>
 
-            {/* YES Protection */}
-            <div className="surface-card p-8 md:p-10" style={{ borderColor: "color-mix(in srgb, var(--color-wise-green) 40%, transparent)" }}>
-              <div className="flex items-center gap-3 mb-6">
-                <span className="w-8 h-8 rounded-full bg-wise-green/20 flex items-center justify-center text-dark-green">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M4 9L8 13L14 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <h3
-                  className="text-lg font-black leading-[0.85]"
-                  style={{ fontFeatureSettings: '"calt"' }}
+            {/* Paired rows */}
+            <div className="flex flex-col gap-4">
+              {compliancePairs.map((pair, i) => (
+                <div
+                  key={i}
+                  className="grid md:grid-cols-[1fr_40px_1fr] gap-4 md:gap-0 p-6 md:p-8 rounded-[var(--radius-large)] items-center transition-all duration-300 hover:shadow-[0_0_0_1px_var(--color-wise-green)]"
+                  style={{ border: "1px solid rgba(14, 15, 12, 0.06)" }}
                 >
-                  YES Protection
-                </h3>
-              </div>
-              <ul className="space-y-4">
-                {yesProtections.map((item, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 text-[15px] text-warm-dark font-medium leading-relaxed"
+                  {/* Requirement */}
+                  <p
+                    className="text-[14px] md:text-[15px] text-warm-dark font-medium leading-[1.6]"
                     style={{ fontFeatureSettings: '"calt"' }}
                   >
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-positive-green shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+                    {pair.requirement}
+                  </p>
+
+                  {/* Arrow connector */}
+                  <div className="hidden md:flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M4 10H16M16 10L12 6M16 10L12 14" stroke="var(--color-wise-green)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+
+                  {/* Mobile label */}
+                  <div className="md:hidden flex items-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="var(--color-wise-green)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span className="text-[11px] font-bold uppercase tracking-[0.06em] text-wise-green" style={{ fontFeatureSettings: '"calt"' }}>
+                      YES Protection
+                    </span>
+                  </div>
+
+                  {/* Protection */}
+                  <p
+                    className="text-[14px] md:text-[15px] text-near-black font-semibold leading-[1.6]"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    {pair.protection}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Grid */}
-      <section className="section-spacing bg-near-black/[0.02]">
+      {/* Compliance Emphasis */}
+      <section className="section-spacing">
         <div className="container-yes">
-          <SectionHeading label="Benefits" align="center">
-            Why Companies Choose EOR
+          <div className="max-w-2xl mx-auto text-center">
+            <SectionHeading label="Our Position" align="center">
+              Compliance Is Not a Feature. It's the <span className="hook">Foundation.</span>
+            </SectionHeading>
+            <p
+              className="mt-4 text-[15px] text-warm-dark leading-relaxed max-w-xl mx-auto font-medium"
+              style={{ fontFeatureSettings: '"calt"' }}
+            >
+              Every contract, every payroll cycle, every termination — structured around Proclamation 1156/2019 from day one. Not retrofitted. Not approximated. Built for Ethiopian law by a team that operates inside it every day.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="section-spacing">
+        <div className="container-yes">
+          <SectionHeading label="Why EOR" align="center">
+            The EOR <span className="hook">Advantage</span>
           </SectionHeading>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+
+          <div className="max-w-4xl mx-auto mt-16 flex flex-col gap-6">
             {benefits.map((b, i) => (
-              <div key={i} className="surface-card p-8 text-center">
-                <div className="w-14 h-14 rounded-full bg-wise-green/10 flex items-center justify-center mx-auto text-dark-green mb-5">
-                  {b.icon}
+              <div
+                key={i}
+                className="group flex flex-col md:flex-row items-start gap-6 md:gap-10 p-8 md:p-10 rounded-[var(--radius-large)] transition-all duration-300 hover:shadow-[0_0_0_1px_var(--color-wise-green)]"
+                style={{ border: "1px solid rgba(14, 15, 12, 0.06)" }}
+              >
+                <span
+                  className="text-[48px] md:text-[56px] font-black leading-none shrink-0 text-near-black/[0.06] select-none"
+                  style={{ fontFeatureSettings: '"calt"' }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3
+                    className="text-[24px] md:text-[28px] font-black leading-[0.85] mb-3"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    {b.title}
+                  </h3>
+                  <p
+                    className="text-[14px] md:text-[15px] text-warm-dark leading-[1.7] font-medium max-w-lg"
+                    style={{ fontFeatureSettings: '"calt"' }}
+                  >
+                    {b.description}
+                  </p>
                 </div>
-                <h3
-                  className="text-lg font-black leading-[0.85] mb-3"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  {b.title}
-                </h3>
-                <p
-                  className="text-[14px] text-gray font-medium leading-relaxed"
-                  style={{ fontFeatureSettings: '"calt"' }}
-                >
-                  {b.description}
-                </p>
               </div>
             ))}
           </div>
@@ -259,7 +310,7 @@ export default function Eor() {
       <section className="section-spacing">
         <div className="container-yes max-w-3xl">
           <SectionHeading label="FAQ" align="center">
-            Common Questions
+            Frequently Asked Questions
           </SectionHeading>
           <Accordion type="single" collapsible className="max-w-2xl mx-auto mt-12">
             {faqs.map((faq, i) => (
@@ -273,30 +324,27 @@ export default function Eor() {
       </section>
 
       {/* Platform Partners */}
-      <section className="section-spacing bg-near-black/[0.02]">
+      <section className="section-spacing">
         <div className="container-yes">
-          <SectionHeading label="Partnership" align="center">
-            What You Get as a Partner
+          <SectionHeading label="Platform Partners" align="center">
+            Global EOR Platforms: We Deliver <span className="hook">Ethiopia.</span>
           </SectionHeading>
-          <div className="grid sm:grid-cols-2 gap-6 mt-12 max-w-3xl mx-auto">
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             {platformPartners.map((p, i) => (
-              <div key={i} className="surface-card p-8">
-                <div className="w-8 h-8 rounded-full bg-wise-green/10 flex items-center justify-center text-dark-green mb-4">
-                  <span
-                    className="text-[14px] font-black"
-                    style={{ fontFeatureSettings: '"calt"' }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3
-                  className="text-base font-black leading-[0.85] mb-2"
-                  style={{ fontFeatureSettings: '"calt"' }}
+              <div
+                key={i}
+                className="group p-6 md:p-8 rounded-[var(--radius-large)] transition-all duration-300 hover:shadow-[0_0_0_1px_var(--color-wise-green)]"
+                style={{ border: "1px solid rgba(14, 15, 12, 0.06)" }}
+              >
+                <span
+                  className="hook text-[28px] md:text-[32px] block mb-4"
+                  style={{ fontWeight: 400 }}
                 >
                   {p.title}
-                </h3>
+                </span>
                 <p
-                  className="text-[14px] text-gray font-medium leading-relaxed"
+                  className="text-[14px] text-warm-dark font-medium leading-[1.6]"
                   style={{ fontFeatureSettings: '"calt"' }}
                 >
                   {p.description}
@@ -317,13 +365,14 @@ export default function Eor() {
                 className="text-[40px] md:text-[64px] font-black leading-[0.85] text-white"
                 style={{ fontFeatureSettings: '"calt"' }}
               >
-                Start Hiring in <span className="hook">Ethiopia</span>
+                Talk to Our <span className="hook">Team</span>
               </h2>
               <p
                 className="mt-5 text-[15px] text-white/70 max-w-md mx-auto leading-relaxed font-medium"
                 style={{ fontFeatureSettings: '"calt"' }}
               >
-                One conversation to map your requirements. No commitment required.
+                Not sure if your Ethiopian operations are fully compliant?
+                Start with a conversation.
               </p>
               <div className="mt-8">
                 <Link
@@ -341,6 +390,9 @@ export default function Eor() {
           </div>
         </div>
       </section>
+
+      <VelvetRope />
     </>
   )
 }
+

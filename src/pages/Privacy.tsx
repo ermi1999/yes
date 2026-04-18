@@ -1,24 +1,28 @@
 import { Link } from "react-router-dom"
+import { useTextReveal } from "@/hooks/useTextReveal"
 
 const calt: React.CSSProperties = { fontFeatureSettings: '"calt"' }
 
 export default function Privacy() {
+  const h1Ref = useTextReveal()
+
   return (
     <article className="bg-white text-near-black">
       {/* Hero */}
       <header className="bg-near-black text-white">
         <div className="container-yes py-24 md:py-32">
           <h1
-            className="text-4xl md:text-6xl font-black leading-[0.85]"
+            ref={h1Ref}
+            className="invisible text-4xl leading-[0.85] font-black md:text-6xl"
             style={calt}
           >
             Privacy <span className="hook">Policy</span>
           </h1>
           <p
-            className="mt-6 text-[15px] text-white/50 font-medium leading-[1.44]"
+            className="mt-6 text-[15px] leading-[1.44] font-medium text-white/50"
             style={calt}
           >
-            Effective Date: January 1, 2025
+            Effective Date: February 28, 2026 | Last Updated: February 28, 2026
           </p>
         </div>
       </header>
@@ -26,331 +30,1009 @@ export default function Privacy() {
       {/* Content */}
       <div className="container-yes py-16 md:py-24">
         <div className="max-w-3xl">
-
-          {/* 1 — Introduction */}
+          {/* Intro */}
           <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
               style={calt}
             >
-              1. Introduction
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              YES Employment Solutions PLC ("<strong>YES</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") is committed to protecting and respecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you use our websites, platforms, and services (collectively, the "<strong>Services</strong>").
+              YES | Your Employment Solutions ("YES," "we," "our," or "us") is
+              committed to protecting the privacy and security of personal data
+              entrusted to us by our clients, candidates, employees, and website
+              visitors. This Privacy Policy explains how we collect, use, store,
+              share, and protect personal data in connection with our services.
             </p>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              YES Employment Solutions PLC acts as the data controller for the personal data processed under this policy. We are registered and operating under the laws of the Federal Democratic Republic of Ethiopia and comply with the Ethiopia Personal Data Protection Proclamation (PDPP No. 1321/2024). Where applicable, we also adhere to the European Union General Data Protection Regulation (EU GDPR) for the processing of personal data of individuals located in the European Economic Area.
-            </p>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              By accessing or using our Services, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with the practices described herein, please discontinue use of our Services.
+            <p
+              className="text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              This policy is governed by the Ethiopian Personal Data Protection
+              Proclamation No. 1321/2024 (PDPP), the Constitution of the Federal
+              Democratic Republic of Ethiopia (Article 26), and applicable
+              international data protection laws including the EU General Data
+              Protection Regulation (GDPR) and UK GDPR where our services
+              involve data subjects in those jurisdictions.
             </p>
           </section>
 
-          {/* 2 — Information We Collect */}
+          {/* 1 — Data Controller */}
           <section className="mb-14">
             <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
               style={calt}
             >
-              2. Information We Collect
+              1. Data Controller
             </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              We collect information that you provide directly, that is generated through your use of our Services, and that is obtained from third-party sources. The categories include:
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <strong>YES | Your Employment Solutions</strong>
+              <br />
+              Suite 301E, Bethlehem Plaza, Kenenisa Avenue, Megenagna, Addis
+              Ababa, Ethiopia
+            </p>
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              Email:{" "}
+              <a
+                href="mailto:info@yes.et"
+                className="text-wise-green hover:underline"
+              >
+                info@yes.et
+              </a>
+              <br />
+              Phone:{" "}
+              <a
+                href="tel:+251942070707"
+                className="text-wise-green hover:underline"
+              >
+                +251 942 07 07 07
+              </a>
+            </p>
+            <p
+              className="text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              For data protection inquiries, contact us at{" "}
+              <a
+                href="mailto:info@yes.et"
+                className="text-wise-green hover:underline"
+              >
+                info@yes.et
+              </a>
+              . We will respond to verified requests within 30 days, or within
+              the timeframe required by applicable law.
+            </p>
+          </section>
+
+          {/* 2 — Personal Data We Collect */}
+          <section className="mb-14">
+            <h2
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
+              style={calt}
+            >
+              2. Personal Data We Collect
+            </h2>
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              We collect personal data necessary to deliver our employment,
+              recruitment, payroll, training, and advisory services. The
+              categories of data we collect depend on your relationship with
+              YES:
             </p>
 
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Personal Information
+            <h3
+              className="mt-6 mb-3 text-lg leading-[0.85] font-black"
+              style={calt}
+            >
+              2.1 Website Visitors
             </h3>
-            <ul className="list-disc pl-6 space-y-2 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li>Full name, email address, phone number, and postal address</li>
-              <li>Date of birth, nationality, and government-issued identification numbers</li>
-              <li>Profile photographs and digital signatures</li>
+            <ul
+              className="list-disc space-y-2 pl-6 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <li>
+                Device and browser information (type, operating system, screen
+                resolution)
+              </li>
+              <li>IP address and approximate geographic location</li>
+              <li>Pages visited, time spent, and navigation patterns</li>
+              <li>Referral source (how you reached our website)</li>
+              <li>
+                Cookie identifiers and similar tracking technologies (see
+                Section 8)
+              </li>
             </ul>
 
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Professional Information
+            <h3
+              className="mt-6 mb-3 text-lg leading-[0.85] font-black"
+              style={calt}
+            >
+              2.2 Candidates and Talent Network Members
             </h3>
-            <ul className="list-disc pl-6 space-y-2 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li>Resumes, curricula vitae, and cover letters</li>
-              <li>Educational qualifications, certifications, and professional licenses</li>
-              <li>Employment history, references, and performance evaluations</li>
-              <li>Skills, language proficiencies, and training records</li>
+            <ul
+              className="list-disc space-y-2 pl-6 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <li>
+                Full name, email address, phone number, and physical address
+              </li>
+              <li>Curriculum vitae / resume and cover letter</li>
+              <li>
+                Employment history, education, and professional qualifications
+              </li>
+              <li>
+                Skills assessments, vetting results, and reference check
+                outcomes
+              </li>
+              <li>Professional certifications (including CISI credentials)</li>
+              <li>LinkedIn profile URL and professional portfolio links</li>
+              <li>Language proficiency and work authorization status</li>
+              <li>Salary expectations and availability</li>
+              <li>
+                Photograph (only if voluntarily provided in CV or application)
+              </li>
             </ul>
 
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Financial Information
+            <h3
+              className="mt-6 mb-3 text-lg leading-[0.85] font-black"
+              style={calt}
+            >
+              2.3 Client Company Representatives
             </h3>
-            <ul className="list-disc pl-6 space-y-2 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li>Bank account details and payment information</li>
-              <li>Tax identification numbers and social security information</li>
-              <li>Salary history and compensation expectations</li>
+            <ul
+              className="list-disc space-y-2 pl-6 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <li>Contact person name, title, email, and phone number</li>
+              <li>Company name, address, and registration details</li>
+              <li>
+                Hiring requirements, job descriptions, and organizational
+                structure
+              </li>
+              <li>Contract and billing information</li>
             </ul>
 
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Usage Data
+            <h3
+              className="mt-6 mb-3 text-lg leading-[0.85] font-black"
+              style={calt}
+            >
+              2.4 Employees Managed Under EOR Services
             </h3>
-            <ul className="list-disc pl-6 space-y-2 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li>IP addresses, browser type, operating system, and device identifiers</li>
-              <li>Pages visited, features used, and time spent on our platforms</li>
-              <li>Referral URLs, search queries, and clickstream data</li>
-              <li>Cookies and similar tracking technologies (see Section 9)</li>
-            </ul>
-          </section>
-
-          {/* 3 — How We Use Your Information */}
-          <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+            <ul
+              className="list-disc space-y-2 pl-6 text-[15px] leading-[1.44] font-medium text-warm-dark"
               style={calt}
             >
-              3. How We Use Your Information
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              We process your personal information for the following purposes:
-            </p>
+              <li>Full legal name, date of birth, nationality, and gender</li>
+              <li>
+                Government-issued identification numbers (ID card, passport,
+                TIN)
+              </li>
+              <li>Bank account details for salary payments</li>
+              <li>Salary, compensation, and benefits information</li>
+              <li>
+                Tax withholding calculations and social security contributions
+              </li>
+              <li>Employment contract terms, start date, and role details</li>
+              <li>Leave records, performance data, and disciplinary actions</li>
+              <li>Emergency contact information</li>
+            </ul>
 
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Service Delivery
+            <h3
+              className="mt-6 mb-3 text-lg leading-[0.85] font-black"
+              style={calt}
+            >
+              2.5 Sensitive Personal Data
             </h3>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              To provide, operate, and maintain our employment, recruitment, employer-of-record, payroll, and advisory services, including processing applications, managing employment relationships, and facilitating payments.
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              We may process the following categories of sensitive data only
+              with your explicit consent or where required by law:
             </p>
-
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Recruitment Matching
-            </h3>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              To match candidates with suitable employment opportunities, assess qualifications, conduct background and integrity checks, and facilitate the hiring process on behalf of our clients.
-            </p>
-
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Compliance
-            </h3>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              To comply with applicable legal and regulatory obligations, including Ethiopian labor law, tax regulations, immigration requirements, and data protection legislation.
-            </p>
-
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Communication
-            </h3>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              To send you service-related notifications, respond to inquiries, provide customer support, and, where you have opted in, deliver marketing communications about our services and industry insights.
-            </p>
-
-            <h3 className="text-lg font-black leading-[0.85] mb-3 mt-6" style={calt}>
-              Analytics and Improvement
-            </h3>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              To analyze usage patterns, measure the effectiveness of our Services, conduct research, and improve our platforms, products, and user experience.
+            <ul
+              className="list-disc space-y-2 pl-6 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <li>
+                Health information (where relevant to employment fitness
+                assessments or leave entitlements)
+              </li>
+              <li>
+                Criminal background check results (where legally required for
+                specific roles)
+              </li>
+              <li>
+                Biometric data (only if used for access control at client
+                premises, with separate consent)
+              </li>
+            </ul>
+            <p
+              className="mt-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              We do not collect data on political opinions, religious beliefs,
+              trade union membership, sexual orientation, or genetic data unless
+              explicitly required by law and with prior authorization from the
+              Ethiopian Communications Authority (ECA) as required under PDPP
+              2024.
             </p>
           </section>
 
-          {/* 4 — Legal Basis for Processing */}
+          {/* 3 — How We Use Your Data */}
           <section className="mb-14">
             <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
               style={calt}
             >
-              4. Legal Basis for Processing
+              3. How We Use Your Data
             </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              We process your personal data on the following legal grounds:
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full min-w-[540px] text-[13px]">
+                <thead>
+                  <tr>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Purpose
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Data Categories
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Legal Basis
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="font-medium text-warm-dark">
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Recruitment and talent matching
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Candidate profile, skills, experience, vetting results
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Consent; contract performance
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Employer of Record services
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Employee identity, salary, tax, benefits
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation (tax/labor law); contract performance
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Payroll processing and tax filing
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Salary, bank details, TIN, social security
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation (Proclamation 1156/2019; ERCA
+                      regulations)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Client relationship management
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Contact details, hiring requirements, billing
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Contract performance; legitimate interest
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      CISI training administration
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Name, qualifications, exam results, certifications
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Contract performance; consent
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Website analytics and improvement
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Device info, browsing behavior, cookies
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Consent (analytics cookies); legitimate interest
+                      (essential cookies)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal compliance and reporting
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      As required by applicable law
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Communication and marketing
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Name, email, preferences
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Consent (marketing); legitimate interest (service updates)
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* 4 — Who We Share Your Data With */}
+          <section className="mb-14">
+            <h2
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
+              style={calt}
+            >
+              4. Who We Share Your Data With
+            </h2>
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              We share personal data only where necessary to deliver our
+              services, comply with legal obligations, or with your explicit
+              consent. We never sell personal data.
             </p>
-            <ul className="list-disc pl-6 space-y-3 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li><strong>Contractual Necessity:</strong> Processing is necessary for the performance of a contract to which you are a party, or to take steps at your request prior to entering into a contract for our employment or recruitment services.</li>
-              <li><strong>Legal Obligation:</strong> Processing is necessary to comply with a legal obligation to which we are subject, including Ethiopian labor, tax, and immigration laws.</li>
-              <li><strong>Legitimate Interests:</strong> Processing is necessary for our legitimate interests, including fraud prevention, network and information security, business development, and improving our Services, provided that such interests are not overridden by your rights and freedoms.</li>
-              <li><strong>Consent:</strong> Where required by law, we will obtain your explicit consent before processing your personal data, particularly for marketing communications and the processing of sensitive personal data. You may withdraw consent at any time.</li>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full min-w-[540px] text-[13px]">
+                <thead>
+                  <tr>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Recipient
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Purpose
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Safeguards
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="font-medium text-warm-dark">
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Client companies
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Presenting vetted candidate profiles for open positions
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Shared only with candidate consent; limited to
+                      role-relevant data
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Ethiopian Revenue and Customs Authority (ERCA)
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Tax withholding and filing obligations
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation under Ethiopian tax law
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Private Organisation Employees Social Security Agency
+                      (PrivoES)
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Social security registration and contributions
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation under social security law
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Ministry of Labor and Social Affairs
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Employee registration, work permit applications
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation under Proclamation 1156/2019
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Banks and financial institutions
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Salary payments to employee accounts
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Contract performance; encrypted transmission
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      CISI / Examready
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Training enrollment and exam administration
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Data Processing Agreement in place; consent obtained
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Background verification providers
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Reference checks and credential verification
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Candidate consent; limited data shared
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      IT service providers
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Hosting, security, CRM, and communication tools
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Data Processing Agreements; access controls
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* 5 — International Data Transfers */}
+          <section className="mb-14">
+            <h2
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
+              style={calt}
+            >
+              5. International Data Transfers
+            </h2>
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              Personal data collected in Ethiopia is stored on servers located
+              in Ethiopia in compliance with PDPP 2024 data localization
+              requirements.
+            </p>
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              Where our services require transferring personal data outside
+              Ethiopia (for example, when presenting candidate profiles to
+              international clients or coordinating with overseas service
+              providers), we ensure the following safeguards are in place:
+            </p>
+            <ul
+              className="list-disc space-y-3 pl-6 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <li>
+                <strong>Explicit consent:</strong> We obtain your informed,
+                specific consent before transferring your data internationally
+              </li>
+              <li>
+                <strong>Contractual safeguards:</strong> We execute Data
+                Processing Agreements and, for EU/UK transfers, Standard
+                Contractual Clauses (SCCs) approved by the European Commission
+              </li>
+              <li>
+                <strong>Adequacy assessment:</strong> We verify that the
+                receiving jurisdiction provides adequate data protection, or
+                implement supplementary measures where it does not
+              </li>
+              <li>
+                <strong>Data minimization:</strong> We transfer only the minimum
+                data necessary for the stated purpose
+              </li>
+            </ul>
+            <p
+              className="mt-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <strong>For EU/UK Data Subjects:</strong> Ethiopia does not
+              currently hold an EU adequacy decision. All transfers of EU/UK
+              personal data to Ethiopia are governed by Standard Contractual
+              Clauses (SCCs) supplemented by Transfer Impact Assessments (TIAs)
+              documenting the safeguards in place.
+            </p>
+          </section>
+
+          {/* 6 — Data Retention */}
+          <section className="mb-14">
+            <h2
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
+              style={calt}
+            >
+              6. Data Retention
+            </h2>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full min-w-[540px] text-[13px]">
+                <thead>
+                  <tr>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Data Category
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Retention Period
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Basis
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="font-medium text-warm-dark">
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Website visitor cookies
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Session to 12 months (varies by cookie type)
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Consent
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Candidate profiles (active roster)
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Duration of roster membership + 2 years
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Consent; legitimate interest
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Candidate profiles (not selected)
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      12 months from last activity
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legitimate interest; consent withdrawal honored
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Employee payroll and tax records
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      5 fiscal years after the relevant fiscal year
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation (Ethiopian tax law)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Employment contracts and HR records
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Duration of employment + 5 years
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Legal obligation; legitimate interest
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Client company records
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Duration of contract + 3 years
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Contract performance; legitimate interest
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      CISI training and certification records
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Indefinite (professional credential)
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Consent; legitimate interest
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p
+              className="mt-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              When retention periods expire, personal data is securely deleted
+              or anonymized. You may request earlier deletion subject to our
+              legal obligations (see Section 7).
+            </p>
+          </section>
+
+          {/* 7 — Your Rights */}
+          <section className="mb-14">
+            <h2
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
+              style={calt}
+            >
+              7. Your Rights
+            </h2>
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              Under PDPP 2024 and, where applicable, the GDPR and UK GDPR, you
+              have the following rights:
+            </p>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full min-w-[540px] text-[13px]">
+                <thead>
+                  <tr>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Right
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="font-medium text-warm-dark">
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right to be informed
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Know what personal data we collect, why, and how it is
+                      used
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right of access
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Request a copy of the personal data we hold about you
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right to rectification
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Request correction of inaccurate or incomplete personal
+                      data
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right to erasure
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Request deletion of your data where no legal basis for
+                      continued retention exists
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right to restrict processing
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Request limitation of processing in certain circumstances
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right to object
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Object to processing based on legitimate interest or for
+                      direct marketing purposes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right to data portability
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Receive your data in a structured, commonly used,
+                      machine-readable format
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Right regarding automated decisions
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Not be subject to decisions based solely on automated
+                      processing that significantly affect you
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p
+              className="mt-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              To exercise any of these rights, contact us at{" "}
+              <a
+                href="mailto:info@yes.et"
+                className="text-wise-green hover:underline"
+              >
+                info@yes.et
+              </a>
+              . We will verify your identity before processing any request.
+              Requests will be addressed within 30 days.
+            </p>
+            <p
+              className="mt-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              You also have the right to lodge a complaint with the Ethiopian
+              Communications Authority (ECA) if you believe your data protection
+              rights have been violated. For EU/UK data subjects, complaints may
+              also be directed to your local supervisory authority.
+            </p>
+          </section>
+
+          {/* 8 — Cookies and Tracking Technologies */}
+          <section className="mb-14">
+            <h2
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
+              style={calt}
+            >
+              8. Cookies and Tracking Technologies
+            </h2>
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full min-w-[540px] text-[13px]">
+                <thead>
+                  <tr>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Category
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Purpose
+                    </th>
+                    <th className="bg-near-black/[0.03] px-3 py-2 text-left text-[11px] font-bold tracking-[0.06em] text-near-black/50 uppercase">
+                      Consent Required
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="font-medium text-warm-dark">
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Essential
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Site functionality, security, session management
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      No (strictly necessary)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Analytics
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Understanding visitor behavior, page performance, traffic
+                      sources
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Yes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Functional
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Remembering preferences, language settings, form data
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Yes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-t border-near-black/10 px-3 py-2.5 font-bold">
+                      Marketing
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Delivering relevant content, measuring campaign
+                      effectiveness
+                    </td>
+                    <td className="border-t border-near-black/10 px-3 py-2.5">
+                      Yes
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p
+              className="mt-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              When you first visit yes.et, a cookie consent banner will allow
+              you to accept or decline non-essential cookies. You may change
+              your preferences at any time through the cookie settings link in
+              the website footer.
+            </p>
+          </section>
+
+          {/* 9 — Data Security */}
+          <section className="mb-14">
+            <h2
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
+              style={calt}
+            >
+              9. Data Security
+            </h2>
+            <p
+              className="mb-4 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              We implement appropriate technical and organizational measures to
+              protect personal data against unauthorized access, alteration,
+              disclosure, or destruction. These measures include:
+            </p>
+            <ul
+              className="list-disc space-y-3 pl-6 text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              <li>Encryption of data in transit (TLS/SSL) and at rest</li>
+              <li>
+                Role-based access controls limiting data access to authorized
+                personnel
+              </li>
+              <li>Regular security assessments and vulnerability testing</li>
+              <li>
+                Secure physical access controls at our offices and data storage
+                facilities
+              </li>
+              <li>
+                Staff training on data protection obligations and incident
+                response procedures
+              </li>
+              <li>
+                Data Processing Agreements with all third-party service
+                providers
+              </li>
+              <li>
+                Incident response plan with 72-hour breach notification to the
+                ECA as required by PDPP 2024
+              </li>
             </ul>
           </section>
 
-          {/* 5 — Information Sharing and Disclosure */}
+          {/* 10 — Children's Data */}
           <section className="mb-14">
             <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
               style={calt}
             >
-              5. Information Sharing and Disclosure
+              10. Children's Data
             </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              We do not sell your personal information. We may share your data in the following circumstances:
-            </p>
-            <ul className="list-disc pl-6 space-y-3 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li><strong>Service Partners:</strong> With clients, employers, and trusted third-party service providers who assist us in delivering our Services, including payroll processors, background check providers, and IT service providers, subject to appropriate data processing agreements.</li>
-              <li><strong>Regulatory Bodies:</strong> With government authorities, regulators, and law enforcement agencies as required by applicable law, including tax authorities, labor inspectorates, and immigration offices.</li>
-              <li><strong>With Your Consent:</strong> With third parties when you have provided explicit consent for such sharing, including when submitting your profile to prospective employers.</li>
-              <li><strong>Legal Requirements:</strong> When disclosure is necessary to protect our rights, enforce our agreements, respond to legal process, or protect the safety and security of our users and the public.</li>
-            </ul>
-          </section>
-
-          {/* 6 — International Data Transfers */}
-          <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+            <p
+              className="text-[15px] leading-[1.44] font-medium text-warm-dark"
               style={calt}
             >
-              6. International Data Transfers
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              As an international employment solutions provider, we may transfer your personal data to countries outside of Ethiopia and, where applicable, outside of the European Economic Area (EEA). When we do so, we ensure that appropriate safeguards are in place:
-            </p>
-            <ul className="list-disc pl-6 space-y-3 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li><strong>EEA Adequacy Decisions:</strong> We transfer data to countries that the European Commission has determined provide an adequate level of data protection.</li>
-              <li><strong>Standard Contractual Clauses:</strong> Where no adequacy decision exists, we use EU-approved Standard Contractual Clauses (SCCs) to ensure your data receives equivalent protection during cross-border transfers.</li>
-            </ul>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mt-4" style={calt}>
-              You may request a copy of the safeguards we have in place by contacting our Data Protection Officer using the details in Section 13.
+              Our services are not directed at individuals under the age of 18.
+              We do not knowingly collect personal data from minors. If we
+              become aware that we have collected data from a minor without
+              appropriate parental or guardian consent, we will delete that data
+              promptly.
             </p>
           </section>
 
-          {/* 7 — Data Retention */}
+          {/* 11 — Changes to This Policy */}
           <section className="mb-14">
             <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
               style={calt}
             >
-              7. Data Retention
+              11. Changes to This Policy
             </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              We retain your personal data only for as long as necessary to fulfill the purposes for which it was collected, including satisfying legal, accounting, or regulatory requirements. The retention period is determined based on:
-            </p>
-            <ul className="list-disc pl-6 space-y-3 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li>The duration of the service relationship and any subsequent obligations</li>
-              <li>Applicable legal and regulatory retention requirements under Ethiopian and, where applicable, EU law</li>
-              <li>The necessity to resolve disputes, enforce agreements, and establish legal claims</li>
-              <li>Legitimate business purposes such as analytics and service improvement (using anonymized data where possible)</li>
-            </ul>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mt-4" style={calt}>
-              When personal data is no longer required, we securely delete or anonymize it in accordance with our data retention policies.
+            <p
+              className="text-[15px] leading-[1.44] font-medium text-warm-dark"
+              style={calt}
+            >
+              We may update this Privacy Policy to reflect changes in our
+              practices, legal requirements, or regulatory guidance. Material
+              changes will be communicated via email to affected data subjects
+              and posted on our website with an updated effective date.
             </p>
           </section>
 
-          {/* 8 — Your Rights */}
+          {/* 12 — Contact Us */}
           <section className="mb-14">
             <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
+              className="mb-6 text-2xl leading-[0.85] font-black md:text-3xl"
               style={calt}
             >
-              8. Your Rights
+              12. Contact Us
             </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              Depending on your location and applicable law, you may have the following rights regarding your personal data:
-            </p>
-            <ul className="list-disc pl-6 space-y-3 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li><strong>Right of Access:</strong> You may request a copy of the personal data we hold about you and information about how it is processed.</li>
-              <li><strong>Right to Rectification:</strong> You may request correction of inaccurate or incomplete personal data.</li>
-              <li><strong>Right to Erasure:</strong> You may request deletion of your personal data where it is no longer necessary for the purpose it was collected, or where you withdraw consent.</li>
-              <li><strong>Right to Restriction:</strong> You may request that we restrict the processing of your personal data in certain circumstances, such as when you contest the accuracy of the data.</li>
-              <li><strong>Right to Data Portability:</strong> You may request to receive your personal data in a structured, commonly used, and machine-readable format, and to transmit it to another controller.</li>
-              <li><strong>Right to Object:</strong> You may object to the processing of your personal data based on legitimate interests or for direct marketing purposes.</li>
-              <li><strong>Right to Withdraw Consent:</strong> Where processing is based on consent, you may withdraw consent at any time without affecting the lawfulness of processing based on consent before its withdrawal.</li>
-            </ul>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mt-4" style={calt}>
-              To exercise any of these rights, please contact our Data Protection Officer at{" "}
-              <a href="mailto:info@yes.et" className="text-wise-green hover:underline">info@yes.et</a>.
-              We will respond to your request within 30 days.
-            </p>
-          </section>
-
-          {/* 9 — Cookies and Tracking Technologies */}
-          <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
-              style={calt}
-            >
-              9. Cookies and Tracking Technologies
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              We use cookies and similar tracking technologies to enhance your experience on our platforms. The types of cookies we use include:
-            </p>
-            <ul className="list-disc pl-6 space-y-3 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li><strong>Essential Cookies:</strong> Required for the operation of our platforms, including session management, authentication, and security features. These cannot be disabled.</li>
-              <li><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our platforms by collecting and reporting information anonymously. This data helps us improve our Services.</li>
-              <li><strong>Preference Cookies:</strong> Enable our platforms to remember choices you make (such as language or region) and provide enhanced, personalized features.</li>
-            </ul>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mt-4" style={calt}>
-              You can manage your cookie preferences through your browser settings. Please note that disabling certain cookies may affect the functionality of our Services.
-            </p>
-          </section>
-
-          {/* 10 — Security Measures */}
-          <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
-              style={calt}
-            >
-              10. Security Measures
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. These measures include:
-            </p>
-            <ul className="list-disc pl-6 space-y-3 text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              <li><strong>Encryption:</strong> Data is encrypted in transit using TLS/SSL protocols and at rest using industry-standard encryption algorithms.</li>
-              <li><strong>Access Controls:</strong> Strict role-based access controls ensure that personal data is accessible only to authorized personnel who require it for their duties.</li>
-              <li><strong>Regular Audits:</strong> We conduct periodic security assessments, penetration testing, and compliance audits to identify and address vulnerabilities.</li>
-            </ul>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mt-4" style={calt}>
-              While we strive to use commercially acceptable means to protect your personal data, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
-            </p>
-          </section>
-
-          {/* 11 — Children's Privacy */}
-          <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
-              style={calt}
-            >
-              11. Children's Privacy
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              Our Services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have collected personal data from a child under 16 without verification of parental consent, we will take steps to delete that information promptly. If you believe we may have collected information from a child under 16, please contact us immediately at{" "}
-              <a href="mailto:info@yes.et" className="text-wise-green hover:underline">info@yes.et</a>.
-            </p>
-          </section>
-
-          {/* 12 — Changes to This Policy */}
-          <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
-              style={calt}
-            >
-              12. Changes to This Policy
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44]" style={calt}>
-              We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will notify you by posting the updated policy on our website with a revised effective date, and where required by law, we will provide notice via email or through our platforms. We encourage you to review this policy periodically to stay informed about how we are protecting your data.
-            </p>
-          </section>
-
-          {/* 13 — Contact Us */}
-          <section className="mb-14">
-            <h2
-              className="text-2xl md:text-3xl font-black leading-[0.85] mb-6"
-              style={calt}
-            >
-              13. Contact Us
-            </h2>
-            <p className="text-[15px] text-warm-dark font-medium leading-[1.44] mb-4" style={calt}>
-              If you have any questions, concerns, or requests regarding this Privacy Policy or our data processing practices, please contact our Data Protection Officer:
-            </p>
-            <div className="bg-light-surface rounded-[var(--radius-card)] p-6 md:p-8">
-              <p className="text-[15px] text-near-black font-medium leading-[1.44]" style={calt}>
-                <strong>YES Employment Solutions PLC</strong><br />
-                Data Protection Officer<br />
-                Suite 301E, Bethlehem Plaza<br />
-                Kenenisa Avenue, Megenagna<br />
-                Addis Ababa, Ethiopia<br /><br />
-                Email:{" "}
-                <a href="mailto:info@yes.et" className="text-wise-green hover:underline">info@yes.et</a><br />
-                Phone: +251 942 07 07 07
+            <div className="rounded-[var(--radius-card)] bg-light-surface p-6 md:p-8">
+              <p
+                className="text-[15px] leading-[1.44] font-medium text-near-black"
+                style={calt}
+              >
+                <strong>Email:</strong>{" "}
+                <a
+                  href="mailto:info@yes.et"
+                  className="text-wise-green hover:underline"
+                >
+                  info@yes.et
+                </a>
+                <br />
+                <strong>Phone:</strong>{" "}
+                <a
+                  href="tel:+251942070707"
+                  className="text-wise-green hover:underline"
+                >
+                  +251 942 07 07 07
+                </a>
+                <br />
+                <br />
+                <strong>Mail:</strong>
+                <br />
+                Data Protection Inquiries
+                <br />
+                YES | Your Employment Solutions
+                <br />
+                Suite 301E, Bethlehem Plaza
+                <br />
+                Kenenisa Avenue, Megenagna
+                <br />
+                Addis Ababa, Ethiopia
+                <br />
+                <br />
+                <strong>Supervisory Authority:</strong> Ethiopian Communications
+                Authority (ECA)
               </p>
             </div>
           </section>
 
           {/* Back link */}
-          <div className="pt-8 border-t border-near-black/10">
+          <div className="border-t border-near-black/10 pt-8">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-[14px] font-medium text-gray hover:text-near-black transition-colors"
+              className="inline-flex items-center gap-2 text-[14px] font-medium text-gray transition-colors hover:text-near-black"
               style={calt}
             >
               <span aria-hidden="true">&larr;</span> Back to Home
