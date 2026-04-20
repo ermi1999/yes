@@ -1,15 +1,17 @@
+"use client"
+
 import { useRef } from "react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import { gsap } from "gsap"
 
 interface AnimatedNavLinkProps {
-  to: string
+  href: string
   active: boolean
   children: React.ReactNode
   className?: string
 }
 
-export function AnimatedNavLink({ to, active, children, className = "" }: AnimatedNavLinkProps) {
+export function AnimatedNavLink({ href, active, children, className = "" }: AnimatedNavLinkProps) {
   const lineRef = useRef<HTMLDivElement>(null)
 
   const handleEnter = () => {
@@ -27,7 +29,7 @@ export function AnimatedNavLink({ to, active, children, className = "" }: Animat
 
   return (
     <Link
-      to={to}
+      href={href}
       className={`relative px-3.5 py-2 text-[13px] font-medium transition-colors ${
         active ? "text-near-black" : "text-near-black/55 hover:text-near-black"
       } ${className}`}
@@ -83,7 +85,7 @@ export function AnimatedFooterLink({ to, href, external, children, className = "
   const cls = `relative inline-block text-[13px] text-white/45 hover:text-white/70 transition-colors ${className}`
 
   if (to) {
-    return <Link to={to} className={cls} onMouseEnter={handleEnter} onMouseLeave={handleLeave} style={{ fontFeatureSettings: '"calt"' }}>{inner}</Link>
+    return <Link href={to} className={cls} onMouseEnter={handleEnter} onMouseLeave={handleLeave} style={{ fontFeatureSettings: '"calt"' }}>{inner}</Link>
   }
 
   return (

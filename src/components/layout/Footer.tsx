@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+"use client"
+
+import Link from "next/link"
 import { useState } from "react"
 import { AnimatedFooterLink } from "@/components/ui/AnimatedLink"
 import { submitForm } from "@/utils/form-submit"
@@ -339,14 +341,14 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <Link
-                to="/privacy"
+                href="/privacy"
                 className="text-[11px] text-white/20 transition-colors hover:text-white/40"
               >
                 Privacy Policy
               </Link>
               <span className="text-white/10">|</span>
               <Link
-                to="/terms"
+                href="/terms"
                 className="text-[11px] text-white/20 transition-colors hover:text-white/40"
               >
                 Terms of Service

@@ -1,5 +1,5 @@
-// Google Apps Script endpoint — set VITE_FORM_ENDPOINT in .env
-const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined
+// Google Apps Script endpoint — set NEXT_PUBLIC_FORM_ENDPOINT in .env
+const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT as string | undefined
 
 const SUBJECTS: Record<string, string> = {
   contact: 'New Quick Contact — yes.et',

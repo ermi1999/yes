@@ -1,15 +1,8 @@
-import { Helmet } from "react-helmet-async"
-
-interface JsonLdProps {
-  data: Record<string, unknown> | Record<string, unknown>[]
-}
-
-export function JsonLd({ data }: JsonLdProps) {
+export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(data)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
   )
 }

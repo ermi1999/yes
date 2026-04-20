@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 
 export type ThemeId = "wise-green" | "navy-gold" | "navy-teal"
@@ -125,6 +127,7 @@ function applyTheme(id: ThemeId) {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [themeId, setThemeId] = useState<ThemeId>(() => {
+    if (typeof window === "undefined") return "navy-teal"
     const saved = localStorage.getItem("yes-theme") as ThemeId | null
     return saved && themes[saved] ? saved : "navy-teal"
   })

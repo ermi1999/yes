@@ -1,3 +1,5 @@
+"use client"
+
 import { StatCounter } from "@/components/ui/StatCounter"
 
 const countries = ["US", "China", "India", "South Africa", "Kenya", "Netherlands", "UK", "France"]

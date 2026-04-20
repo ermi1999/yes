@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+"use client"
+
+import Link from "next/link"
 
 export function CTABanner() {
   return (
@@ -21,7 +23,7 @@ export function CTABanner() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
-                to="/initialize"
+                href="/initialize"
                 className="wise-btn inline-flex items-center gap-2 px-8 py-4 text-white text-lg font-semibold rounded-[var(--radius-pill)] border border-white/20 hover:border-white/40 hover:bg-white/[0.06]"
                 style={{ fontFeatureSettings: '"calt"' }}
               >

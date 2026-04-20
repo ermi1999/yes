@@ -1,5 +1,8 @@
+"use client"
+
 import { useState, useEffect, useRef, useCallback } from "react"
-import { Link, useLocation } from "react-router-dom"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { gsap } from "gsap"
 import { AnimatedNavLink } from "@/components/ui/AnimatedLink"
 import { useTheme, type ThemeId } from "@/lib/theme"
@@ -55,11 +58,11 @@ export function Navbar() {
   const drawerRef = useRef<HTMLDivElement>(null)
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const animatingRef = useRef(false)
-  const location = useLocation()
+  const pathname = usePathname() ?? "/"
 
   const isActive = (href: string) =>
-    location.pathname === href || location.pathname.startsWith(href + "/")
-  const isSolutionsActive = location.pathname.startsWith("/solutions")
+    pathname === href || pathname.startsWith(href + "/")
+  const isSolutionsActive = pathname.startsWith("/solutions")
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -70,7 +73,7 @@ export function Navbar() {
   useEffect(() => {
     setMobileOpen(false)
     setSolutionsOpen(false)
-  }, [location.pathname])
+  }, [pathname])
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : ""
@@ -275,7 +278,7 @@ export function Navbar() {
           aria-label="Main navigation"
         >
           <Link
-            to="/"
+            href="/"
             className="relative z-50 flex items-center"
             aria-label="YES | Your Employment Solutions — Home"
           >
@@ -323,7 +326,7 @@ export function Navbar() {
             {navLinks.map((link) => (
               <AnimatedNavLink
                 key={link.href}
-                to={link.href}
+                href={link.href}
                 active={isActive(link.href)}
               >
                 {link.label}
@@ -365,7 +368,7 @@ export function Navbar() {
             </div>
 
             <Link
-              to="/initialize"
+              href="/initialize"
               className="wise-btn rounded-[var(--radius-pill)] bg-wise-green px-4 py-2 text-[13px] font-semibold text-dark-green"
               style={{ fontFeatureSettings: '"calt"' }}
             >
@@ -437,7 +440,7 @@ export function Navbar() {
                   ref={(el) => {
                     cardsRef.current[i] = el
                   }}
-                  to={item.href}
+                  href={item.href}
                   className={`group relative flex flex-col gap-1 rounded-[var(--radius-card)] px-4 py-3.5 transition-all duration-150 hover:bg-green-nav-hover ${
                     isActive(item.href) ? "bg-green-nav-hover" : ""
                   }`}
@@ -513,7 +516,7 @@ export function Navbar() {
           {solutions.map((item) => (
             <Link
               key={item.href}
-              to={item.href}
+              href={item.href}
               className="flex flex-col gap-0.5 rounded-[var(--radius-standard)] px-3 py-2.5 transition-colors hover:bg-green-nav-hover"
               onClick={() => setMobileOpen(false)}
             >
@@ -530,7 +533,7 @@ export function Navbar() {
           {navLinks.map((link) => (
             <Link
               key={link.href}
-              to={link.href}
+              href={link.href}
               className="block rounded-[var(--radius-standard)] px-3 py-2.5 text-[15px] font-medium text-near-black/70 transition-colors hover:bg-green-nav-hover"
               style={{ fontFeatureSettings: '"calt"' }}
               onClick={() => setMobileOpen(false)}
@@ -540,7 +543,7 @@ export function Navbar() {
           ))}
           <div className="mt-6">
             <Link
-              to="/initialize"
+              href="/initialize"
               className="wise-btn block w-full rounded-[var(--radius-pill)] bg-wise-green px-6 py-3.5 text-center text-[14px] font-semibold text-dark-green"
               onClick={() => setMobileOpen(false)}
             >

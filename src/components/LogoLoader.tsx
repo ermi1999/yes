@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect } from "react"
 
 export function LogoLoader({ onComplete }: { onComplete: () => void }) {

@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef, useMemo } from "react"
 import DottedMap from "dotted-map/without-countries"
 import mapJson from "@/data/world-map.json"

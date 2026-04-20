@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+"use client"
+
+import Link from "next/link"
 import { WorldMap } from "./WorldMap"
 import { useTextReveal } from "@/hooks/useTextReveal"
 
@@ -48,7 +50,7 @@ export function Hero() {
         {/* Dual CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10 animate-[fadeSlideUp_0.7s_ease_0.2s_forwards] opacity-0">
           <Link
-            to="/initialize"
+            href="/initialize"
             className="wise-btn inline-flex items-center gap-2 px-8 py-4 bg-wise-green text-dark-green text-lg font-semibold rounded-[var(--radius-pill)]"
             style={{ fontFeatureSettings: '"calt"' }}
           >
@@ -58,7 +60,7 @@ export function Hero() {
             </svg>
           </Link>
           <Link
-            to="/for-talent"
+            href="/for-talent"
             className="wise-btn inline-flex items-center gap-2 px-8 py-4 text-near-black text-lg font-semibold rounded-[var(--radius-pill)]"
             style={{
               fontFeatureSettings: '"calt"',

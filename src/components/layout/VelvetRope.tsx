@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+"use client"
+
+import Link from "next/link"
 
 export function VelvetRope() {
   return (
@@ -23,7 +25,7 @@ export function VelvetRope() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/for-talent"
+              href="/for-talent"
               className="wise-btn px-8 py-3.5 bg-wise-green text-dark-green text-[14px] font-semibold rounded-[var(--radius-pill)]"
               style={{ fontFeatureSettings: '"calt"' }}
             >

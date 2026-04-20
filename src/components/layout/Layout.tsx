@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom"
+"use client"
+
 import { Navbar } from "./Navbar"
 import { Footer } from "./Footer"
 import { useLenis } from "@/hooks/useLenis"
@@ -18,7 +19,7 @@ export function Layout() {
 
       <Navbar />
       <main id="main-content">
-        <Outlet />
+        {/* children passed from app layout */}
       </main>
       <Footer />
 
