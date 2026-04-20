@@ -5,6 +5,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading"
 import { VelvetRope } from "@/components/layout/VelvetRope"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion"
 import { useTextReveal } from "@/hooks/useTextReveal"
+import { SEOHead } from "@/components/seo/SEOHead"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 /* ── Why Join Data ── */
 const whyCards = [
@@ -556,6 +558,39 @@ export default function ForTalent() {
 
   return (
     <>
+      <SEOHead
+        title="For Talent | Apply to Join — YES Employment Solutions Ethiopia"
+        description="Join the YES Executive Roster — Ethiopia's premier vetted professional network. Get matched to roles with leading companies operating in Ethiopia."
+      />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: "For Talent | Apply to Join — YES Employment Solutions Ethiopia",
+        description: "Join the YES Executive Roster — Ethiopia's premier vetted professional network. Get matched to roles with leading companies operating in Ethiopia. Apply for vetting, access CISI certification, and advance your career.",
+        url: "https://www.yes.et/for-talent",
+        publisher: {
+          "@type": "Organization",
+          name: "YES Employment Solutions",
+          url: "https://www.yes.et",
+        },
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.yes.et/" },
+          { "@type": "ListItem", position: 2, name: "For Talent", item: "https://www.yes.et/for-talent" },
+        ],
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(faq => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      }} />
       {/* Hero */}
       <section className="relative min-h-[80vh] flex items-center justify-center pt-[72px]">
         <div className="container-yes relative z-10 text-center py-20 md:py-32">

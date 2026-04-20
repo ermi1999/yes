@@ -4,6 +4,8 @@ import { StatCounter } from "@/components/ui/StatCounter"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion"
 import { VelvetRope } from "@/components/layout/VelvetRope"
 import { useTextReveal } from "@/hooks/useTextReveal"
+import { SEOHead } from "@/components/seo/SEOHead"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 const pipelineSteps = ["Source", "Screen", "Match", "Interview", "Offer", "Onboard"]
 
@@ -100,6 +102,36 @@ export default function TalentAcquisition() {
 
   return (
     <>
+      <SEOHead
+        title="Talent Acquisition Ethiopia | Executive Search & Technical Recruiting | YES"
+        description="Access Ethiopia's top professionals. Executive search, technical recruiting, and specialized talent sourcing. 14-day average time-to-hire. 94% 12-month retention."
+      />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Strategic Talent Acquisition in Ethiopia",
+        description: "Access the top 3% of Ethiopian professional talent — over 20,000 specialists across 40+ disciplines. 14-day average time-to-hire, 94% retention rate.",
+        provider: { "@type": "Organization", name: "YES Employment Solutions", url: "https://www.yes.et" },
+        areaServed: { "@type": "Country", name: "Ethiopia" },
+        serviceType: "Talent Acquisition",
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(faq => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.yes.et/" },
+          { "@type": "ListItem", position: 2, name: "Talent Acquisition", item: "https://www.yes.et/solutions/talent-acquisition" },
+        ],
+      }} />
       {/* Hero */}
       <section className="relative pt-[72px] overflow-hidden">
         <div className="container-yes py-20 md:py-32 text-center">

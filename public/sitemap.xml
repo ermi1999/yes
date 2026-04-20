@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.yes.et/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.yes.et/the-standard</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yes.et/for-talent</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yes.et/initialize</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yes.et/intelligence</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yes.et/solutions/eor</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yes.et/solutions/talent-acquisition</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.yes.et/solutions/integrity</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yes.et/solutions/payroll</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yes.et/solutions/training-academy</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.yes.et/solutions/enterprise</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.yes.et/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.yes.et/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

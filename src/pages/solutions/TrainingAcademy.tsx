@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/Accordion"
 import { VelvetRope } from "@/components/layout/VelvetRope"
 import { useTextReveal } from "@/hooks/useTextReveal"
+import { SEOHead } from "@/components/seo/SEOHead"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 const partnerFeatures = [
   {
@@ -211,6 +213,36 @@ export default function TrainingAcademy() {
 
   return (
     <>
+      <SEOHead
+        title="CISI Certification Ethiopia | Capital Markets Training | YES Academy"
+        description="CISI UK certification for Ethiopia's live capital market. YES Academy in partnership with CISI and Exam Ready. Level 1-3 programs for finance professionals."
+      />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "CISI Training Academy in Ethiopia",
+        description: "Ethiopia's authorized CISI UK training partner. Certify your financial services team with globally recognized qualifications for the live capital market. Levels 1-3 available.",
+        provider: { "@type": "Organization", name: "YES Employment Solutions", url: "https://www.yes.et" },
+        areaServed: { "@type": "Country", name: "Ethiopia" },
+        serviceType: "Professional Training & Certification",
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(faq => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.yes.et/" },
+          { "@type": "ListItem", position: 2, name: "Training Academy", item: "https://www.yes.et/solutions/training-academy" },
+        ],
+      }} />
       {/* Hero */}
       <section className="relative overflow-hidden pt-[72px]">
         <div className="container-yes py-20 text-center md:py-32">

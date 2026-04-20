@@ -4,6 +4,8 @@ import { StatCounter } from "@/components/ui/StatCounter"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion"
 import { VelvetRope } from "@/components/layout/VelvetRope"
 import { useTextReveal } from "@/hooks/useTextReveal"
+import { SEOHead } from "@/components/seo/SEOHead"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 const ercaFeatures = [
   {
@@ -85,6 +87,36 @@ export default function Payroll() {
 
   return (
     <>
+      <SEOHead
+        title="Payroll Services Ethiopia | Tax Filing & Pension | YES"
+        description="Zero-error payroll processing for Ethiopian employees. Tax filing, pension fund management, and guaranteed compliance. No penalties, no surprises."
+      />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Fiduciary Payroll & Tax in Ethiopia",
+        description: "Precision payroll processing and ERCA-compliant tax filing in Ethiopia. Pension fund management, income tax withholding, and full audit trail backed by on-the-ground expertise since 2015.",
+        provider: { "@type": "Organization", name: "YES Employment Solutions", url: "https://www.yes.et" },
+        areaServed: { "@type": "Country", name: "Ethiopia" },
+        serviceType: "Payroll Processing",
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(faq => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.yes.et/" },
+          { "@type": "ListItem", position: 2, name: "Payroll & Tax", item: "https://www.yes.et/solutions/payroll" },
+        ],
+      }} />
       {/* Hero */}
       <section className="relative pt-[72px] overflow-hidden">
         <div className="container-yes py-20 md:py-32 text-center">

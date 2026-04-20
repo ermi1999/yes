@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import { useTextReveal } from "@/hooks/useTextReveal"
 import { SectionHeading } from "@/components/ui/SectionHeading"
 import { VelvetRope } from "@/components/layout/VelvetRope"
+import { SEOHead } from "@/components/seo/SEOHead"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 const calt = { fontFeatureSettings: '"calt"' as const }
 
@@ -97,6 +99,30 @@ export default function Intelligence() {
 
   return (
     <>
+      <SEOHead
+        title="Ethiopia Market Intelligence | Employment Law, Talent Trends & Guides | YES"
+        description="Research, guides, and analysis for companies operating in Ethiopia. Labor law, market entry strategies, talent trends, and capital market insights from YES Employment Solutions."
+      />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: "Ethiopia Market Intelligence | Employment Law, Talent Trends & Guides | YES",
+        description: "Research, guides, and analysis for companies operating in Ethiopia. Labor law, market entry strategies, talent trends, and capital market insights from YES Employment Solutions.",
+        url: "https://www.yes.et/intelligence",
+        publisher: {
+          "@type": "Organization",
+          name: "YES Employment Solutions",
+          url: "https://www.yes.et",
+        },
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.yes.et/" },
+          { "@type": "ListItem", position: 2, name: "Intelligence", item: "https://www.yes.et/intelligence" },
+        ],
+      }} />
       {/* ── Hero ── */}
       <section className="pt-[72px]">
         <div className="container-yes section-spacing text-center">

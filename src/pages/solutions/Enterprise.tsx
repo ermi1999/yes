@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import { VelvetRope } from "@/components/layout/VelvetRope"
 import { submitForm } from "@/utils/form-submit"
 import { useTextReveal } from "@/hooks/useTextReveal"
+import { SEOHead } from "@/components/seo/SEOHead"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 const suiteNav = [
   { id: "work", label: "Work" },
@@ -122,6 +124,27 @@ export default function Enterprise() {
 
   return (
     <>
+      <SEOHead
+        title="Your Enterprise Solutions | Syntropy Work · Property · Pharma · Health | YES"
+        description="The Syntropy platform suite by YES. Workforce management, commercial property, pharmaceutical distribution, and healthcare — enterprise software built for Ethiopian business realities."
+      />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Your Enterprise Solutions (YES) — Syntropy Platform Suite",
+        description: "Enterprise software built by YES: Syntropy Work, Syntropy Property, Syntropy Pharma, Syntropy Health, and FundTracker.",
+        provider: { "@type": "Organization", name: "YES Employment Solutions", url: "https://www.yes.et" },
+        areaServed: { "@type": "Country", name: "Ethiopia" },
+        serviceType: "Enterprise Software Solutions",
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.yes.et/" },
+          { "@type": "ListItem", position: 2, name: "Enterprise Solutions", item: "https://www.yes.et/solutions/enterprise" },
+        ],
+      }} />
       {/* Hero */}
       <section className="relative pt-[72px] overflow-hidden">
         <div className="container-yes py-20 md:py-32 text-center">

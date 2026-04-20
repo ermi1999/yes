@@ -2,7 +2,7 @@ import { useEffect } from "react"
 
 export function LogoLoader({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
-    const timer = setTimeout(onComplete, 3000)
+    const timer = setTimeout(onComplete, 2200)
     return () => clearTimeout(timer)
   }, [onComplete])
 
@@ -35,19 +35,19 @@ export function LogoLoader({ onComplete }: { onComplete: () => void }) {
           fill: transparent;
           stroke-dasharray: 2000;
           stroke-dashoffset: 2000;
-          animation: logo-draw 1.8s ease forwards, logo-fill 0.6s ease 1.4s forwards;
+          animation: logo-draw 1.2s ease forwards, logo-fill 0.4s ease 1.0s forwards;
         }
-        .logo-loader path:nth-child(1) { animation-delay: 0s, 1.4s; }
-        .logo-loader path:nth-child(2) { animation-delay: 0.08s, 1.48s; }
-        .logo-loader path:nth-child(3) { animation-delay: 0.16s, 1.56s; }
-        .logo-loader path:nth-child(4) { animation-delay: 0.24s, 1.64s; }
-        .logo-loader path:nth-child(5) { animation-delay: 0.32s, 1.72s; }
-        .logo-loader path:nth-child(6) { animation-delay: 0.4s, 1.8s; }
-        .logo-loader path:nth-child(7) { animation-delay: 0.48s, 1.88s; }
-        .logo-loader path:nth-child(8) { animation-delay: 0.56s, 1.96s; }
-        .logo-loader path:nth-child(9) { animation-delay: 0.64s, 2.04s; }
-        .logo-loader path:nth-child(10) { animation-delay: 0.72s, 2.12s; }
-        .logo-loader path:nth-child(11) { animation-delay: 0.8s, 2.2s; }
+        .logo-loader path:nth-child(1) { animation-delay: 0s, 1.0s; }
+        .logo-loader path:nth-child(2) { animation-delay: 0.06s, 1.06s; }
+        .logo-loader path:nth-child(3) { animation-delay: 0.12s, 1.12s; }
+        .logo-loader path:nth-child(4) { animation-delay: 0.18s, 1.18s; }
+        .logo-loader path:nth-child(5) { animation-delay: 0.24s, 1.24s; }
+        .logo-loader path:nth-child(6) { animation-delay: 0.3s, 1.3s; }
+        .logo-loader path:nth-child(7) { animation-delay: 0.36s, 1.36s; }
+        .logo-loader path:nth-child(8) { animation-delay: 0.42s, 1.42s; }
+        .logo-loader path:nth-child(9) { animation-delay: 0.48s, 1.48s; }
+        .logo-loader path:nth-child(10) { animation-delay: 0.54s, 1.54s; }
+        .logo-loader path:nth-child(11) { animation-delay: 0.6s, 1.6s; }
         @keyframes logo-draw {
           to { stroke-dashoffset: 0; }
         }

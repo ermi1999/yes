@@ -3,6 +3,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/Accordion"
 import { VelvetRope } from "@/components/layout/VelvetRope"
 import { useTextReveal } from "@/hooks/useTextReveal"
+import { SEOHead } from "@/components/seo/SEOHead"
+import { JsonLd } from "@/components/seo/JsonLd"
 
 const compliancePairs = [
   {
@@ -121,6 +123,36 @@ export default function Eor() {
 
   return (
     <>
+      <SEOHead
+        title="Employer of Record in Ethiopia | Legal Compliance & Payroll | YES"
+        description="Hire employees in Ethiopia without a local entity. YES handles employment contracts, tax filing, pension, and full Proclamation 1156/2019 compliance. Operational in weeks, not months."
+      />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Employer of Record in Ethiopia",
+        description: "Enter the Ethiopian market without entity registration. YES absorbs all legal liability as your Employer of Record, ensuring full compliance with Proclamation 1156/2019.",
+        provider: { "@type": "Organization", name: "YES Employment Solutions", url: "https://www.yes.et" },
+        areaServed: { "@type": "Country", name: "Ethiopia" },
+        serviceType: "Employer of Record",
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(faq => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
+      }} />
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.yes.et/" },
+          { "@type": "ListItem", position: 2, name: "Employer of Record", item: "https://www.yes.et/solutions/eor" },
+        ],
+      }} />
       {/* Hero */}
       <section className="relative pt-[72px] overflow-hidden">
         <div className="container-yes py-20 md:py-32 text-center">
