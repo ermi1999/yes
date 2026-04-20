@@ -14,6 +14,9 @@ interface ThemeColors {
   textTertiary: string     // very muted text
   bg: string               // page background
   nearBlack: string        // used for dark sections (footer, CTA banners)
+  surfaceTintMid: string   // subtle section tint (mid)
+  surfaceTintDeep: string  // subtle section tint (deeper)
+  sectionTint: string      // very subtle section bg tint
 }
 
 const themes: Record<ThemeId, ThemeColors> = {
@@ -29,6 +32,9 @@ const themes: Record<ThemeId, ThemeColors> = {
     textTertiary: "#868685",
     bg: "#ffffff",
     nearBlack: "#0e0f0c",
+    surfaceTintMid: "#fafbf9",
+    surfaceTintDeep: "#f5f7f3",
+    sectionTint: "rgba(159, 232, 112, 0.03)",
   },
   "navy-gold": {
     accent: "#D4A017",
@@ -42,6 +48,9 @@ const themes: Record<ThemeId, ThemeColors> = {
     textTertiary: "rgba(15, 43, 74, 0.35)",
     bg: "#F8FAFC",
     nearBlack: "#0F2B4A",
+    surfaceTintMid: "#f7f8fa",
+    surfaceTintDeep: "#f0f2f5",
+    sectionTint: "rgba(212, 160, 23, 0.02)",
   },
   "navy-teal": {
     accent: "#4DC5C1",
@@ -55,6 +64,9 @@ const themes: Record<ThemeId, ThemeColors> = {
     textTertiary: "#7E90A2",
     bg: "#FFFFFF",
     nearBlack: "#071525",
+    surfaceTintMid: "#fbf9f5",
+    surfaceTintDeep: "#f7f3ec",
+    sectionTint: "rgba(201, 169, 110, 0.03)",
   },
 }
 
@@ -99,7 +111,10 @@ function applyTheme(id: ThemeId) {
   root.setProperty("--color-warm-dark", t.textSecondary)
   root.setProperty("--color-gray", t.textTertiary)
 
-  // Background
+  // Background & surface tints
+  root.setProperty("--color-surface-tint-mid", t.surfaceTintMid)
+  root.setProperty("--color-surface-tint-deep", t.surfaceTintDeep)
+  root.setProperty("--color-section-tint", t.sectionTint)
   document.body.style.backgroundColor = t.bg
 
   document.body.style.color = t.textPrimary

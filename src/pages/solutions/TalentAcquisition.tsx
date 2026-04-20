@@ -247,7 +247,7 @@ export default function TalentAcquisition() {
       </section>
 
       {/* Methodology — zigzag timeline */}
-      <section className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f7f3 100%)" }}>
+      <section className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, var(--color-surface-tint-mid) 100%)" }}>
         <div className="container-yes">
           <SectionHeading label="Our Process" align="center">
             Sourcing <span className="hook">Methodology</span>

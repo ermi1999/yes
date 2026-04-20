@@ -63,7 +63,7 @@ export function Roadmap() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="section-spacing overflow-hidden" style={{ background: "rgba(226, 246, 213, 0.1)" }}>
+    <section ref={sectionRef} className="section-spacing overflow-hidden" style={{ background: "var(--color-section-tint)" }}>
       <div className="container-yes">
         <SectionHeading
           label="Speed to Market"

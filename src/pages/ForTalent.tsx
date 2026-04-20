@@ -678,7 +678,7 @@ export default function ForTalent() {
       </section>
 
       {/* How It Works */}
-      <section className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f7f3 100%)" }}>
+      <section className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, var(--color-surface-tint-mid) 100%)" }}>
         <div className="container-yes">
           <SectionHeading
             label="How It Works"
@@ -1309,7 +1309,7 @@ export default function ForTalent() {
       </section>
 
       {/* FAQ */}
-      <section className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f7f3 100%)" }}>
+      <section className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, var(--color-surface-tint-mid) 100%)" }}>
         <div className="container-yes">
           <SectionHeading
             label="FAQ"

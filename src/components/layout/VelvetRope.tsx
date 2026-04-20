@@ -4,7 +4,7 @@ export function VelvetRope() {
   return (
     <section
       className="border-y"
-      style={{ borderColor: "rgba(14, 15, 12, 0.06)", background: "linear-gradient(180deg, #ffffff 0%, #f5f7f3 50%, #eef1ea 100%)" }}
+      style={{ borderColor: "rgba(14, 15, 12, 0.06)", background: "linear-gradient(180deg, #ffffff 0%, var(--color-surface-tint-mid) 50%, var(--color-surface-tint-deep) 100%)" }}
       aria-labelledby="velvet-rope-heading"
     >
       <div className="container-yes py-20 md:py-28">

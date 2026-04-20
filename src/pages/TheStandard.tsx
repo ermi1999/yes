@@ -168,7 +168,7 @@ export default function TheStandard() {
       <section
         className="section-spacing"
         style={{
-          background: "linear-gradient(180deg, #ffffff 0%, #f5f7f3 100%)",
+          background: "linear-gradient(180deg, #ffffff 0%, var(--color-surface-tint-mid) 100%)",
         }}
       >
         <div className="container-yes">
@@ -281,7 +281,7 @@ export default function TheStandard() {
       <section
         className="section-spacing"
         style={{
-          background: "linear-gradient(180deg, #f5f7f3 0%, #ffffff 100%)",
+          background: "linear-gradient(180deg, var(--color-surface-tint-mid) 0%, #ffffff 100%)",
         }}
       >
         <div className="container-yes">
@@ -430,7 +430,7 @@ export default function TheStandard() {
       <section
         className="section-spacing"
         style={{
-          background: "linear-gradient(180deg, #ffffff 0%, #f5f7f3 100%)",
+          background: "linear-gradient(180deg, #ffffff 0%, var(--color-surface-tint-mid) 100%)",
         }}
       >
         <div className="container-yes">
@@ -503,7 +503,7 @@ export default function TheStandard() {
         className="border-t"
         style={{
           borderColor: "rgba(14, 15, 12, 0.06)",
-          background: "linear-gradient(180deg, #f5f7f3 0%, #eef1ea 100%)",
+          background: "linear-gradient(180deg, var(--color-surface-tint-mid) 0%, var(--color-surface-tint-deep) 100%)",
         }}
       >
         <div className="container-yes py-20 md:py-28">

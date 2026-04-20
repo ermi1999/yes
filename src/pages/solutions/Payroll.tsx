@@ -243,7 +243,7 @@ export default function Payroll() {
       </section>
 
       {/* Process Flow — zigzag timeline */}
-      <section id="process" className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, #f5f7f3 100%)" }}>
+      <section id="process" className="section-spacing" style={{ background: "linear-gradient(180deg, #ffffff 0%, var(--color-surface-tint-mid) 100%)" }}>
         <div className="container-yes">
           <SectionHeading label="The Process" align="center">
             From Data to <span className="hook">Disbursement</span>
