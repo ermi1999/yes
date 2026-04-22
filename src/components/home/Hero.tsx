@@ -11,7 +11,7 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[72px]">
       {/* World map — tilted globe, fully contained on all devices */}
       <div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
+        className="absolute inset-0 overflow-hidden"
         aria-hidden="true"
       >
         <div
@@ -22,7 +22,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="container-yes relative z-10 text-center py-20 md:py-32">
+      <div className="container-yes relative z-10 text-center py-20 md:py-32 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
         {/* Overline */}
         <div className="flex items-center justify-center mb-6 opacity-0 animate-[fadeSlideUp_0.7s_ease_0.3s_forwards]">
           <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-near-black" style={{ fontFeatureSettings: '"calt"' }}>

@@ -18,7 +18,15 @@
       "Bash(find /c/Users/user/projects/cloned/clinique/app -type f -name *.tsx -o -name *.ts)",
       "Bash(npm uninstall:*)",
       "Bash(cd:*)",
-      "Bash(npm ls:*)"
+      "Bash(npm ls:*)",
+      "Bash(ls:*)",
+      "Bash(grep -r \"earning\\\\|performance\\\\|dashboard\\\\|admin\" /c/Users/user/projects/YES-5.0 --include=*.json --include=*.md)",
+      "Bash(find /c/Users/user/projects/next-shadcn-admin-dashboard -name *.tsx -o -name *.ts)",
+      "Bash(find /c/Users/user/projects/yes-hris /c/Users/user/projects/yes-hris-v2 -name *earning* -o -name *performance* -o -name *dashboard*)",
+      "Bash(find /c/Users/user/projects/yes-hris -type f \\\\\\(-name *.tsx -o -name *.ts \\\\\\))",
+      "Bash(find /c/Users/user/projects/yes-hris-v2 -type f \\\\\\(-name *.tsx -o -name *.ts \\\\\\))",
+      "Bash(xargs grep:*)",
+      "Bash(find /c/Users/user/projects -type f -name *.tsx)"
     ]
   }
 }

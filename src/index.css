@@ -141,6 +141,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-hook, var(--color-wise-green));
 }
 
+/* When hooks are neutralized, inherit parent color — !important overrides [data-theme] specificity */
+.hooks-off .hook {
+  color: inherit !important;
+}
+
 /* Theme-specific overrides — Navy Gold */
 [data-theme="navy-gold"] .hook {
   color: #D4A017;

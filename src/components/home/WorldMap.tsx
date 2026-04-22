@@ -132,6 +132,36 @@ export function WorldMap() {
     spawnProjectile()
     const spawnInterval = setInterval(spawnProjectile, 2200)
 
+    // ── Mouse tracking for interactive wave effect ──
+    let rawMouseX = -9999, rawMouseY = -9999
+    let smoothMouseX = -9999, smoothMouseY = -9999
+    let mouseActive = false
+    const WAVE_RADIUS = 160
+    const WAVE_SPEED = 0.04
+    const MOUSE_LERP = 0.12       // smoothing factor — lower = smoother trail
+    let waveTime = 0
+
+    function handleMouseMove(e: MouseEvent) {
+      const rect = container!.getBoundingClientRect()
+      rawMouseX = e.clientX - rect.left
+      rawMouseY = e.clientY - rect.top
+      if (!mouseActive) {
+        smoothMouseX = rawMouseX
+        smoothMouseY = rawMouseY
+        mouseActive = true
+      }
+    }
+    function handleMouseLeave() {
+      mouseActive = false
+      rawMouseX = -9999
+      rawMouseY = -9999
+      smoothMouseX = -9999
+      smoothMouseY = -9999
+    }
+    // Listen on the container div (not canvas) so events pass through from the hero text layer
+    container!.addEventListener("mousemove", handleMouseMove)
+    container!.addEventListener("mouseleave", handleMouseLeave)
+
     // Read accent color from CSS variable so it follows the theme
     function getAccentRgb() {
       const hex = getComputedStyle(document.documentElement).getPropertyValue("--color-wise-green").trim()
@@ -154,6 +184,12 @@ export function WorldMap() {
     function animate() {
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx!.clearRect(0, 0, cw, ch)
+
+      // Smooth mouse position — lerp toward raw for fluid trailing effect
+      if (mouseActive) {
+        smoothMouseX += (rawMouseX - smoothMouseX) * MOUSE_LERP
+        smoothMouseY += (rawMouseY - smoothMouseY) * MOUSE_LERP
+      }
 
       const hubC = toCanvas(hubXY)
       const glowMap = new Map<number, number>()
@@ -245,17 +281,41 @@ export function WorldMap() {
         }
       }
 
-      // Draw dots — bigger and more visible for the tilted globe
+      // Advance wave time
+      waveTime += WAVE_SPEED
+
+      // Draw dots — with cursor-reactive wave effect
       for (let d = 0; d < dots.length; d++) {
         const p = toCanvas(dots[d])
         const glow = glowMap.get(d)
 
-        if (glow && glow > 0.05) {
-          const r = 1.8 + glow * 1.4
-          ctx!.beginPath(); ctx!.arc(p.x, p.y, r + 2.5 * glow, 0, Math.PI * 2)
-          ctx!.fillStyle = accentRgba(glow * 0.18); ctx!.fill()
+        // Calculate cursor proximity using smoothed position
+        const dxMouse = p.x - smoothMouseX
+        const dyMouse = p.y - smoothMouseY
+        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse)
+
+        // Smooth radial glow that follows cursor with a soft ripple edge
+        let cursorIntensity = 0
+        if (mouseActive && distMouse < WAVE_RADIUS) {
+          const proximity = 1 - distMouse / WAVE_RADIUS
+          // Smooth cubic falloff for the base glow
+          const smooth = proximity * proximity * (3 - 2 * proximity) // smoothstep
+          // Gentle ripple at the edge for a living feel
+          const ripple = Math.sin(distMouse * 0.06 - waveTime * 2) * 0.15 + 0.85
+          cursorIntensity = smooth * ripple
+        }
+
+        // Combine projectile glow + cursor wave
+        const totalGlow = Math.max(glow || 0, cursorIntensity)
+
+        if (totalGlow > 0.05) {
+          const r = 1.8 + totalGlow * 1.6
+          // Outer glow halo
+          ctx!.beginPath(); ctx!.arc(p.x, p.y, r + 3 * totalGlow, 0, Math.PI * 2)
+          ctx!.fillStyle = accentRgba(totalGlow * 0.15); ctx!.fill()
+          // Core dot
           ctx!.beginPath(); ctx!.arc(p.x, p.y, r, 0, Math.PI * 2)
-          ctx!.fillStyle = accentRgba(0.35 + glow * 0.5); ctx!.fill()
+          ctx!.fillStyle = accentRgba(0.3 + totalGlow * 0.55); ctx!.fill()
         } else {
           ctx!.beginPath(); ctx!.arc(p.x, p.y, 1.8, 0, Math.PI * 2)
           ctx!.fillStyle = "rgba(14, 15, 12, 0.22)"; ctx!.fill()
@@ -283,6 +343,8 @@ export function WorldMap() {
       clearInterval(spawnInterval)
       clearInterval(themeCheck)
       window.removeEventListener("resize", resize)
+      container!.removeEventListener("mousemove", handleMouseMove)
+      container!.removeEventListener("mouseleave", handleMouseLeave)
     }
   }, [dots, bounds, hubXY, destXYs])
 

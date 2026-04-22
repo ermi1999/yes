@@ -347,12 +347,7 @@ export function Navbar() {
                   onClick={() => themeConfig.setTheme(id)}
                   className="relative h-5 w-5 rounded-full transition-all duration-200"
                   style={{
-                    background:
-                      id === "wise-green"
-                        ? "#9fe870"
-                        : id === "navy-gold"
-                          ? "#D4A017"
-                          : "#4DC5C1",
+                    background: themeConfig.themes[id].swatch,
                     boxShadow:
                       themeConfig.themeId === id
                         ? "0 0 0 2px #fff, 0 0 0 3.5px rgba(14,15,12,0.3)"
@@ -366,6 +361,37 @@ export function Navbar() {
                 />
               ))}
             </div>
+
+            {/* Hook color toggle */}
+            <button
+              onClick={themeConfig.toggleHooks}
+              className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[11px] font-semibold transition-all duration-200"
+              style={{
+                background: themeConfig.hooksEnabled ? "rgba(14, 15, 12, 0.04)" : "rgba(14, 15, 12, 0.08)",
+                fontFeatureSettings: '"calt"',
+                color: themeConfig.hooksEnabled ? "var(--color-hook)" : "var(--color-near-black)",
+                fontStyle: "italic",
+                fontFamily: themeConfig.hooksEnabled ? "var(--font-serif)" : "var(--font-display)",
+              }}
+              aria-label={themeConfig.hooksEnabled ? "Turn off accent hook colors" : "Turn on accent hook colors"}
+              title={themeConfig.hooksEnabled ? "Hooks: On" : "Hooks: Off"}
+            >
+              <span>Aa</span>
+              <span
+                className="w-[26px] h-[14px] rounded-full relative transition-colors duration-200"
+                style={{
+                  background: themeConfig.hooksEnabled ? "var(--color-wise-green)" : "rgba(14, 15, 12, 0.15)",
+                }}
+              >
+                <span
+                  className="absolute top-[2px] w-[10px] h-[10px] rounded-full bg-white transition-all duration-200"
+                  style={{
+                    left: themeConfig.hooksEnabled ? "14px" : "2px",
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
+                  }}
+                />
+              </span>
+            </button>
 
             <Link
               href="/initialize"
